@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <iostream>
 #include <chrono>
+#include <cstring>
 using std::cerr;
 using std::endl;
 using namespace std;
@@ -149,29 +150,6 @@ int connect(int sockfd, const sockaddr* addr){
     return ret;
 }
 
-// struct sockaddr* sockaddr_cast(struct sockaddr_in* addr)
-// {
-//     return static_cast<struct sockaddr*>(static_cast<void*>(addr));
-// }
-
-// struct sockaddr* sockaddr_cast(struct sockaddr_in6* addr)
-// {
-//     return static_cast<struct sockaddr*>(static_cast<void*>(addr));
-// }
-
-// const struct sockaddr* sockaddr_cast(const struct sockaddr_in6* addr)
-// {
-//     return static_cast<struct sockaddr*>(static_cast<void*>(const_cast<sockaddr_in6*>( addr)));
-// }
-
-// sockaddr_in* sockaddr_in_cast(sockaddr* addr){
-//     return static_cast<sockaddr_in*>(static_cast<void*>(addr));
-// }
-
-// sockaddr_in6* sockaddr_in6_cast(sockaddr* addr){
-//     return static_cast<sockaddr_in6*>(static_cast<void*>(addr));
-// }
-
 std::string toIp(const sockaddr* addr){
     char ip[64];
     if(addr->sa_family == AF_INET6){
@@ -184,5 +162,30 @@ std::string toIp(const sockaddr* addr){
     return ip;
 }
 
+std::string toIpPort(const sockaddr* addr){
+    char ipport[64]{'\0'};
+    if(addr->sa_family == AF_INET6){
+        auto addr6 = sockaddr_cast<sockaddr_in6*>(addr);
+        inet_ntop(AF_INET6, &addr6->sin6_addr, ipport, static_cast<socklen_t>(sizeof (sockaddr_in6)));
+        auto p = ipport+strlen(ipport);
+        *p++ = ':';
+        sprintf(p, "%u", sockets::netToHost16(addr6->sin6_port));
+    }else if(addr->sa_family == AF_INET){
+        auto addr4 = sockaddr_cast<sockaddr_in*>(addr);
+        inet_ntop(AF_INET, &addr4->sin_addr, ipport, static_cast<socklen_t>(sizeof (sockaddr_in)));
+        auto p = ipport+strlen(ipport);
+        *p++ = ':';
+        sprintf(p, "%u", sockets::netToHost16(addr4->sin_port));
+    }
+    return ipport;
+}
+
+std::uint16_t toPort(const sockaddr* addr){
+    if(addr->sa_family == AF_INET6){
+        return sockets::netToHost16(sockaddr_cast<sockaddr_in6*>(addr)->sin6_port);
+    }else if(addr->sa_family == AF_INET){
+        return sockets::netToHost16(sockaddr_cast<sockaddr_in*>(addr)->sin_port);
+    }
+}
 
 }  // namespace sockets

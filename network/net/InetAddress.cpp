@@ -19,4 +19,19 @@ string InetAddress::toIp()const {
     return sockets::toIp(getSockAddr());
 }
 
+string InetAddress::toIpPort()const{
+    return sockets::toIpPort(getSockAddr());
+}
 
+uint16_t InetAddress::toPort()const{
+    return sockets::toPort(getSockAddr());
+}
+
+void InetAddress::setSockAddr(sockaddr* addr){
+    if(addr->sa_family == AF_INET6){
+        memcpy(&sockaddr6_, addr, sizeof(sockaddr_in6));
+    }
+    else if(addr->sa_family == AF_INET){
+        memcpy(&sockaddr_, addr, sizeof(sockaddr_in));
+    }
+}

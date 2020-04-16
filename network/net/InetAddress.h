@@ -12,6 +12,8 @@ public:
     string toIpPort()const;
     uint16_t toPort()const;
     const sockaddr* getSockAddr()const {return sockets::sockaddr_cast<sockaddr*>(&sockaddr6_);}
+    void setSockAddr(sockaddr* addr);
+    uint16_t getNetPort()const {return sockaddr6_.sin6_port;}
 
 private:
     union {

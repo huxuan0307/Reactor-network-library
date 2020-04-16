@@ -64,4 +64,9 @@ inline uint64_t netToHost16(uint64_t x){return be64toh(x);}
 
 // ip port convert
 std::string toIp(const sockaddr* addr);
+std::string toIpPort(const sockaddr* addr);
+std::uint16_t toPort(const sockaddr* addr);
+
+
+
 }

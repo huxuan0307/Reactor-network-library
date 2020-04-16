@@ -1,7 +1,7 @@
 
 #include <noncopyabal.h>
 #include <functional>
-
+#include "Socket.h"
 
 class EventLoop;
 class InetAddress;

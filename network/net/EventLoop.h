@@ -2,10 +2,11 @@
 #include "noncopyable.h"
 #include <functional>
 #include <thread>
-
+#include <vector>
+#include <memory>
 using namespace std::this_thread;
-// class channel;
-// class Poller;
+class Channel;
+class Poller;
 
 
 class EventLoop{
@@ -16,6 +17,7 @@ using event_t = std::function<void()>;
     EventLoop();
     ~EventLoop();
     void loop();
+    void quit();
     void assertInLoopThread(){
         if(!isInLoopThread()){
             abortNotInLoopThread();
@@ -23,10 +25,15 @@ using event_t = std::function<void()>;
     }
     bool isInLoopThread() const{return threadId_ == std::this_thread::get_id();}
     EventLoop* getEventLoopOfCurrentThread();
+    void updateChannel(std::weak_ptr<Channel>);
+
 private:
+    using ChannelList = std::vector<std::weak_ptr<Channel>>;
     void abortNotInLoopThread();
     bool looping_;
     bool quit_;
     const std::thread::id threadId_;
-
+    std::unique_ptr<Poller> poller_;
+    ChannelList activeChannels_;
+    static const int kPOllerTime_ms;
 };

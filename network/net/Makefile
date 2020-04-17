@@ -111,19 +111,46 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-network/net/CMakeFiles/EventLoop.dir/rule:
-	cd /home/huxuan666/learning/network && $(MAKE) -f CMakeFiles/Makefile2 network/net/CMakeFiles/EventLoop.dir/rule
-.PHONY : network/net/CMakeFiles/EventLoop.dir/rule
+network/net/CMakeFiles/Network.dir/rule:
+	cd /home/huxuan666/learning/network && $(MAKE) -f CMakeFiles/Makefile2 network/net/CMakeFiles/Network.dir/rule
+.PHONY : network/net/CMakeFiles/Network.dir/rule
 
 # Convenience name for target.
-EventLoop: network/net/CMakeFiles/EventLoop.dir/rule
+Network: network/net/CMakeFiles/Network.dir/rule
 
-.PHONY : EventLoop
+.PHONY : Network
 
 # fast build rule for target.
-EventLoop/fast:
-	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/EventLoop.dir/build.make network/net/CMakeFiles/EventLoop.dir/build
-.PHONY : EventLoop/fast
+Network/fast:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/build
+.PHONY : Network/fast
+
+Channel.o: Channel.cpp.o
+
+.PHONY : Channel.o
+
+# target to build an object file
+Channel.cpp.o:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/Channel.cpp.o
+.PHONY : Channel.cpp.o
+
+Channel.i: Channel.cpp.i
+
+.PHONY : Channel.i
+
+# target to preprocess a source file
+Channel.cpp.i:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/Channel.cpp.i
+.PHONY : Channel.cpp.i
+
+Channel.s: Channel.cpp.s
+
+.PHONY : Channel.s
+
+# target to generate assembly for a file
+Channel.cpp.s:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/Channel.cpp.s
+.PHONY : Channel.cpp.s
 
 EventLoop.o: EventLoop.cpp.o
 
@@ -131,7 +158,7 @@ EventLoop.o: EventLoop.cpp.o
 
 # target to build an object file
 EventLoop.cpp.o:
-	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/EventLoop.dir/build.make network/net/CMakeFiles/EventLoop.dir/EventLoop.cpp.o
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/EventLoop.cpp.o
 .PHONY : EventLoop.cpp.o
 
 EventLoop.i: EventLoop.cpp.i
@@ -140,7 +167,7 @@ EventLoop.i: EventLoop.cpp.i
 
 # target to preprocess a source file
 EventLoop.cpp.i:
-	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/EventLoop.dir/build.make network/net/CMakeFiles/EventLoop.dir/EventLoop.cpp.i
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/EventLoop.cpp.i
 .PHONY : EventLoop.cpp.i
 
 EventLoop.s: EventLoop.cpp.s
@@ -149,8 +176,35 @@ EventLoop.s: EventLoop.cpp.s
 
 # target to generate assembly for a file
 EventLoop.cpp.s:
-	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/EventLoop.dir/build.make network/net/CMakeFiles/EventLoop.dir/EventLoop.cpp.s
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/EventLoop.cpp.s
 .PHONY : EventLoop.cpp.s
+
+Poller.o: Poller.cpp.o
+
+.PHONY : Poller.o
+
+# target to build an object file
+Poller.cpp.o:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/Poller.cpp.o
+.PHONY : Poller.cpp.o
+
+Poller.i: Poller.cpp.i
+
+.PHONY : Poller.i
+
+# target to preprocess a source file
+Poller.cpp.i:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/Poller.cpp.i
+.PHONY : Poller.cpp.i
+
+Poller.s: Poller.cpp.s
+
+.PHONY : Poller.s
+
+# target to generate assembly for a file
+Poller.cpp.s:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/Poller.cpp.s
+.PHONY : Poller.cpp.s
 
 # Help Target
 help:
@@ -159,11 +213,17 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... EventLoop"
+	@echo "... Network"
 	@echo "... edit_cache"
+	@echo "... Channel.o"
+	@echo "... Channel.i"
+	@echo "... Channel.s"
 	@echo "... EventLoop.o"
 	@echo "... EventLoop.i"
 	@echo "... EventLoop.s"
+	@echo "... Poller.o"
+	@echo "... Poller.i"
+	@echo "... Poller.s"
 .PHONY : help
 
 

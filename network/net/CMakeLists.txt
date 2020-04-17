@@ -1,3 +1,2 @@
 
-add_library(EventLoop EventLoop.cpp EventLoop.h)
-
+add_library(Network EventLoop.cpp EventLoop.h Poller.cpp Poller.h Channel.cpp Channel.h)

@@ -13,6 +13,10 @@ functional
 -
 thread
 -
+vector
+-
+memory
+-
 
 /home/huxuan666/learning/network/network/net/noncopyable.h
 

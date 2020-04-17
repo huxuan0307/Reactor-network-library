@@ -1,6 +1,5 @@
 
 find_package (Threads)
-add_executable(test1 test1.cpp)
-add_executable(test2 test2.cpp)
-target_link_libraries(test1 EventLoop ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(test2 EventLoop ${CMAKE_THREAD_LIBS_INIT})
+add_library(s01_network EventLoop.cpp EventLoop.h Poller.cpp Poller.h Channel.cpp Channel.h)
+add_executable(test3 test3.cpp)
+target_link_libraries(test3 s01_network ${CMAKE_THREAD_LIBS_INIT})

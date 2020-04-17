@@ -111,43 +111,43 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named EventLoop
+# Target rules for targets named Network
 
 # Build rule for target.
-EventLoop: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 EventLoop
-.PHONY : EventLoop
+Network: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Network
+.PHONY : Network
 
 # fast build rule for target.
-EventLoop/fast:
-	$(MAKE) -f network/net/CMakeFiles/EventLoop.dir/build.make network/net/CMakeFiles/EventLoop.dir/build
-.PHONY : EventLoop/fast
+Network/fast:
+	$(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/build
+.PHONY : Network/fast
 
 #=============================================================================
-# Target rules for targets named test1
+# Target rules for targets named s01_network
 
 # Build rule for target.
-test1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test1
-.PHONY : test1
+s01_network: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 s01_network
+.PHONY : s01_network
 
 # fast build rule for target.
-test1/fast:
-	$(MAKE) -f s00/CMakeFiles/test1.dir/build.make s00/CMakeFiles/test1.dir/build
-.PHONY : test1/fast
+s01_network/fast:
+	$(MAKE) -f s01/CMakeFiles/s01_network.dir/build.make s01/CMakeFiles/s01_network.dir/build
+.PHONY : s01_network/fast
 
 #=============================================================================
-# Target rules for targets named test2
+# Target rules for targets named test3
 
 # Build rule for target.
-test2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test2
-.PHONY : test2
+test3: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test3
+.PHONY : test3
 
 # fast build rule for target.
-test2/fast:
-	$(MAKE) -f s00/CMakeFiles/test2.dir/build.make s00/CMakeFiles/test2.dir/build
-.PHONY : test2/fast
+test3/fast:
+	$(MAKE) -f s01/CMakeFiles/test3.dir/build.make s01/CMakeFiles/test3.dir/build
+.PHONY : test3/fast
 
 # Help Target
 help:
@@ -157,9 +157,9 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... EventLoop"
-	@echo "... test1"
-	@echo "... test2"
+	@echo "... Network"
+	@echo "... s01_network"
+	@echo "... test3"
 .PHONY : help
 
 

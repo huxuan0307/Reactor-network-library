@@ -187,11 +187,17 @@ EventLoop_DIR:PATH=EventLoop_DIR-NOTFOUND
 //Dependencies for target
 EventLoop_LIB_DEPENDS:STATIC=
 
+//Dependencies for target
+Network_LIB_DEPENDS:STATIC=
+
 //Value Computed by CMake
 network_BINARY_DIR:STATIC=/home/huxuan666/learning/network
 
 //Value Computed by CMake
 network_SOURCE_DIR:STATIC=/home/huxuan666/learning/network
+
+//Dependencies for target
+s01_network_LIB_DEPENDS:STATIC=
 
 
 ########################

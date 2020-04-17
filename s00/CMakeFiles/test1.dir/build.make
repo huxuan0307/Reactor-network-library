@@ -90,7 +90,6 @@ test1_EXTERNAL_OBJECTS =
 
 s00/test1: s00/CMakeFiles/test1.dir/test1.cpp.o
 s00/test1: s00/CMakeFiles/test1.dir/build.make
-s00/test1: network/net/libEventLoop.a
 s00/test1: s00/CMakeFiles/test1.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/huxuan666/learning/network/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test1"
 	cd /home/huxuan666/learning/network/s00 && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test1.dir/link.txt --verbose=$(VERBOSE)

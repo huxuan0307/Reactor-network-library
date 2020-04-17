@@ -4,4 +4,4 @@ ADD_COMPILE_OPTIONS("-std=c++11" "-pthread")
 project(network)
 
 add_subdirectory(./network/net)
-add_subdirectory(s00)
+add_subdirectory(s01)

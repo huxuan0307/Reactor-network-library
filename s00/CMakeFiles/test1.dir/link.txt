@@ -1,1 +1,1 @@
-/usr/bin/c++    -rdynamic CMakeFiles/test1.dir/test1.cpp.o  -o test1 ../network/net/libEventLoop.a -lpthread 
+/usr/bin/c++    -rdynamic CMakeFiles/test1.dir/test1.cpp.o  -o test1 -lEventLoop -lpthread 

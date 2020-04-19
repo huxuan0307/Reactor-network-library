@@ -84,7 +84,7 @@ network/net/preinstall:
 network/net/CMakeFiles/Network.dir/all:
 	$(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/depend
 	$(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/huxuan666/learning/network/CMakeFiles --progress-num=1,2,3,4 "Built target Network"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/huxuan666/learning/network/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target Network"
 .PHONY : network/net/CMakeFiles/Network.dir/all
 
 # Include target in all.
@@ -94,7 +94,7 @@ all: network/net/CMakeFiles/Network.dir/all
 
 # Build rule for subdir invocation for target.
 network/net/CMakeFiles/Network.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/huxuan666/learning/network/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/huxuan666/learning/network/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 network/net/CMakeFiles/Network.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/huxuan666/learning/network/CMakeFiles 0
 .PHONY : network/net/CMakeFiles/Network.dir/rule
@@ -141,7 +141,7 @@ s01/preinstall:
 s01/CMakeFiles/s01_network.dir/all:
 	$(MAKE) -f s01/CMakeFiles/s01_network.dir/build.make s01/CMakeFiles/s01_network.dir/depend
 	$(MAKE) -f s01/CMakeFiles/s01_network.dir/build.make s01/CMakeFiles/s01_network.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/huxuan666/learning/network/CMakeFiles --progress-num=5,6,7,8 "Built target s01_network"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/huxuan666/learning/network/CMakeFiles --progress-num=8,9,10,11 "Built target s01_network"
 .PHONY : s01/CMakeFiles/s01_network.dir/all
 
 # Include target in all.
@@ -178,7 +178,7 @@ clean: s01/CMakeFiles/s01_network.dir/clean
 s01/CMakeFiles/test3.dir/all: s01/CMakeFiles/s01_network.dir/all
 	$(MAKE) -f s01/CMakeFiles/test3.dir/build.make s01/CMakeFiles/test3.dir/depend
 	$(MAKE) -f s01/CMakeFiles/test3.dir/build.make s01/CMakeFiles/test3.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/huxuan666/learning/network/CMakeFiles --progress-num=9,10 "Built target test3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/huxuan666/learning/network/CMakeFiles --progress-num=19,20 "Built target test3"
 .PHONY : s01/CMakeFiles/test3.dir/all
 
 # Include target in all.
@@ -205,6 +205,139 @@ s01/CMakeFiles/test3.dir/clean:
 
 # clean rule for target.
 clean: s01/CMakeFiles/test3.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory s02
+
+# Convenience name for "all" pass in the directory.
+s02/all: s02/CMakeFiles/timestamp_test.dir/all
+s02/all: s02/CMakeFiles/s02_network.dir/all
+s02/all: s02/CMakeFiles/test4.dir/all
+
+.PHONY : s02/all
+
+# Convenience name for "clean" pass in the directory.
+s02/clean: s02/CMakeFiles/timestamp_test.dir/clean
+s02/clean: s02/CMakeFiles/s02_network.dir/clean
+s02/clean: s02/CMakeFiles/test4.dir/clean
+
+.PHONY : s02/clean
+
+# Convenience name for "preinstall" pass in the directory.
+s02/preinstall:
+
+.PHONY : s02/preinstall
+
+#=============================================================================
+# Target rules for target s02/CMakeFiles/timestamp_test.dir
+
+# All Build rule for target.
+s02/CMakeFiles/timestamp_test.dir/all: s02/CMakeFiles/s02_network.dir/all
+	$(MAKE) -f s02/CMakeFiles/timestamp_test.dir/build.make s02/CMakeFiles/timestamp_test.dir/depend
+	$(MAKE) -f s02/CMakeFiles/timestamp_test.dir/build.make s02/CMakeFiles/timestamp_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/huxuan666/learning/network/CMakeFiles --progress-num=23,24 "Built target timestamp_test"
+.PHONY : s02/CMakeFiles/timestamp_test.dir/all
+
+# Include target in all.
+all: s02/CMakeFiles/timestamp_test.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+s02/CMakeFiles/timestamp_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/huxuan666/learning/network/CMakeFiles 9
+	$(MAKE) -f CMakeFiles/Makefile2 s02/CMakeFiles/timestamp_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/huxuan666/learning/network/CMakeFiles 0
+.PHONY : s02/CMakeFiles/timestamp_test.dir/rule
+
+# Convenience name for target.
+timestamp_test: s02/CMakeFiles/timestamp_test.dir/rule
+
+.PHONY : timestamp_test
+
+# clean rule for target.
+s02/CMakeFiles/timestamp_test.dir/clean:
+	$(MAKE) -f s02/CMakeFiles/timestamp_test.dir/build.make s02/CMakeFiles/timestamp_test.dir/clean
+.PHONY : s02/CMakeFiles/timestamp_test.dir/clean
+
+# clean rule for target.
+clean: s02/CMakeFiles/timestamp_test.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target s02/CMakeFiles/s02_network.dir
+
+# All Build rule for target.
+s02/CMakeFiles/s02_network.dir/all:
+	$(MAKE) -f s02/CMakeFiles/s02_network.dir/build.make s02/CMakeFiles/s02_network.dir/depend
+	$(MAKE) -f s02/CMakeFiles/s02_network.dir/build.make s02/CMakeFiles/s02_network.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/huxuan666/learning/network/CMakeFiles --progress-num=12,13,14,15,16,17,18 "Built target s02_network"
+.PHONY : s02/CMakeFiles/s02_network.dir/all
+
+# Include target in all.
+all: s02/CMakeFiles/s02_network.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+s02/CMakeFiles/s02_network.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/huxuan666/learning/network/CMakeFiles 7
+	$(MAKE) -f CMakeFiles/Makefile2 s02/CMakeFiles/s02_network.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/huxuan666/learning/network/CMakeFiles 0
+.PHONY : s02/CMakeFiles/s02_network.dir/rule
+
+# Convenience name for target.
+s02_network: s02/CMakeFiles/s02_network.dir/rule
+
+.PHONY : s02_network
+
+# clean rule for target.
+s02/CMakeFiles/s02_network.dir/clean:
+	$(MAKE) -f s02/CMakeFiles/s02_network.dir/build.make s02/CMakeFiles/s02_network.dir/clean
+.PHONY : s02/CMakeFiles/s02_network.dir/clean
+
+# clean rule for target.
+clean: s02/CMakeFiles/s02_network.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target s02/CMakeFiles/test4.dir
+
+# All Build rule for target.
+s02/CMakeFiles/test4.dir/all: s02/CMakeFiles/s02_network.dir/all
+	$(MAKE) -f s02/CMakeFiles/test4.dir/build.make s02/CMakeFiles/test4.dir/depend
+	$(MAKE) -f s02/CMakeFiles/test4.dir/build.make s02/CMakeFiles/test4.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/huxuan666/learning/network/CMakeFiles --progress-num=21,22 "Built target test4"
+.PHONY : s02/CMakeFiles/test4.dir/all
+
+# Include target in all.
+all: s02/CMakeFiles/test4.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+s02/CMakeFiles/test4.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/huxuan666/learning/network/CMakeFiles 9
+	$(MAKE) -f CMakeFiles/Makefile2 s02/CMakeFiles/test4.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/huxuan666/learning/network/CMakeFiles 0
+.PHONY : s02/CMakeFiles/test4.dir/rule
+
+# Convenience name for target.
+test4: s02/CMakeFiles/test4.dir/rule
+
+.PHONY : test4
+
+# clean rule for target.
+s02/CMakeFiles/test4.dir/clean:
+	$(MAKE) -f s02/CMakeFiles/test4.dir/build.make s02/CMakeFiles/test4.dir/clean
+.PHONY : s02/CMakeFiles/test4.dir/clean
+
+# clean rule for target.
+clean: s02/CMakeFiles/test4.dir/clean
 
 .PHONY : clean
 

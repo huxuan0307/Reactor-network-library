@@ -149,6 +149,45 @@ test3/fast:
 	$(MAKE) -f s01/CMakeFiles/test3.dir/build.make s01/CMakeFiles/test3.dir/build
 .PHONY : test3/fast
 
+#=============================================================================
+# Target rules for targets named timestamp_test
+
+# Build rule for target.
+timestamp_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 timestamp_test
+.PHONY : timestamp_test
+
+# fast build rule for target.
+timestamp_test/fast:
+	$(MAKE) -f s02/CMakeFiles/timestamp_test.dir/build.make s02/CMakeFiles/timestamp_test.dir/build
+.PHONY : timestamp_test/fast
+
+#=============================================================================
+# Target rules for targets named s02_network
+
+# Build rule for target.
+s02_network: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 s02_network
+.PHONY : s02_network
+
+# fast build rule for target.
+s02_network/fast:
+	$(MAKE) -f s02/CMakeFiles/s02_network.dir/build.make s02/CMakeFiles/s02_network.dir/build
+.PHONY : s02_network/fast
+
+#=============================================================================
+# Target rules for targets named test4
+
+# Build rule for target.
+test4: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test4
+.PHONY : test4
+
+# fast build rule for target.
+test4/fast:
+	$(MAKE) -f s02/CMakeFiles/test4.dir/build.make s02/CMakeFiles/test4.dir/build
+.PHONY : test4/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -160,6 +199,9 @@ help:
 	@echo "... Network"
 	@echo "... s01_network"
 	@echo "... test3"
+	@echo "... timestamp_test"
+	@echo "... s02_network"
+	@echo "... test4"
 .PHONY : help
 
 

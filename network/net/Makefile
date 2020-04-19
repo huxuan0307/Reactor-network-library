@@ -206,6 +206,87 @@ Poller.cpp.s:
 	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/Poller.cpp.s
 .PHONY : Poller.cpp.s
 
+Timer.o: Timer.cpp.o
+
+.PHONY : Timer.o
+
+# target to build an object file
+Timer.cpp.o:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/Timer.cpp.o
+.PHONY : Timer.cpp.o
+
+Timer.i: Timer.cpp.i
+
+.PHONY : Timer.i
+
+# target to preprocess a source file
+Timer.cpp.i:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/Timer.cpp.i
+.PHONY : Timer.cpp.i
+
+Timer.s: Timer.cpp.s
+
+.PHONY : Timer.s
+
+# target to generate assembly for a file
+Timer.cpp.s:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/Timer.cpp.s
+.PHONY : Timer.cpp.s
+
+TimerQueue.o: TimerQueue.cpp.o
+
+.PHONY : TimerQueue.o
+
+# target to build an object file
+TimerQueue.cpp.o:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/TimerQueue.cpp.o
+.PHONY : TimerQueue.cpp.o
+
+TimerQueue.i: TimerQueue.cpp.i
+
+.PHONY : TimerQueue.i
+
+# target to preprocess a source file
+TimerQueue.cpp.i:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/TimerQueue.cpp.i
+.PHONY : TimerQueue.cpp.i
+
+TimerQueue.s: TimerQueue.cpp.s
+
+.PHONY : TimerQueue.s
+
+# target to generate assembly for a file
+TimerQueue.cpp.s:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/TimerQueue.cpp.s
+.PHONY : TimerQueue.cpp.s
+
+Timestamp.o: Timestamp.cpp.o
+
+.PHONY : Timestamp.o
+
+# target to build an object file
+Timestamp.cpp.o:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/Timestamp.cpp.o
+.PHONY : Timestamp.cpp.o
+
+Timestamp.i: Timestamp.cpp.i
+
+.PHONY : Timestamp.i
+
+# target to preprocess a source file
+Timestamp.cpp.i:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/Timestamp.cpp.i
+.PHONY : Timestamp.cpp.i
+
+Timestamp.s: Timestamp.cpp.s
+
+.PHONY : Timestamp.s
+
+# target to generate assembly for a file
+Timestamp.cpp.s:
+	cd /home/huxuan666/learning/network && $(MAKE) -f network/net/CMakeFiles/Network.dir/build.make network/net/CMakeFiles/Network.dir/Timestamp.cpp.s
+.PHONY : Timestamp.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -224,6 +305,15 @@ help:
 	@echo "... Poller.o"
 	@echo "... Poller.i"
 	@echo "... Poller.s"
+	@echo "... Timer.o"
+	@echo "... Timer.i"
+	@echo "... Timer.s"
+	@echo "... TimerQueue.o"
+	@echo "... TimerQueue.i"
+	@echo "... TimerQueue.s"
+	@echo "... Timestamp.o"
+	@echo "... Timestamp.i"
+	@echo "... Timestamp.s"
 .PHONY : help
 
 

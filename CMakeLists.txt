@@ -5,3 +5,4 @@ project(network)
 
 add_subdirectory(./network/net)
 add_subdirectory(s01)
+add_subdirectory(s02)

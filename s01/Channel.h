@@ -15,6 +15,7 @@ class Channel:public enable_shared_from_this<Channel>
 public:
 using EventCallback = std::function<void()>;
     Channel(std::weak_ptr<EventLoop> loop, int fd);
+    ~Channel(){};
     void handleEvent();
     void setReadCallback(const EventCallback& cb){readCallback_ = cb;}
     void setWriteCallback(const EventCallback& cb){writeCallback_ = cb;}

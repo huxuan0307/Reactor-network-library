@@ -13,6 +13,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeLists.txt"
   "network/net/CMakeLists.txt"
   "s01/CMakeLists.txt"
+  "s02/CMakeLists.txt"
   "/usr/share/cmake-3.10/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.10/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake"
@@ -48,6 +49,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "network/net/CMakeFiles/CMakeDirectoryInformation.cmake"
   "s01/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "s02/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -55,4 +57,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "network/net/CMakeFiles/Network.dir/DependInfo.cmake"
   "s01/CMakeFiles/s01_network.dir/DependInfo.cmake"
   "s01/CMakeFiles/test3.dir/DependInfo.cmake"
+  "s02/CMakeFiles/timestamp_test.dir/DependInfo.cmake"
+  "s02/CMakeFiles/s02_network.dir/DependInfo.cmake"
+  "s02/CMakeFiles/test4.dir/DependInfo.cmake"
   )

@@ -4,8 +4,8 @@
 #include <cstdio>
 #include <unistd.h>
 #include <thread>
-#include "../network/net/EventLoop.h"
-#include "../network/net/Channel.h"
+#include "EventLoop.h"
+#include "Channel.h"
 #include <thread>
 #include <sys/timerfd.h>
 #include <memory>

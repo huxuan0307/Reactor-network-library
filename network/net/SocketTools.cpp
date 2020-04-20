@@ -1,4 +1,4 @@
-#include <SocketTools.h>
+#include "SocketTools.h"
 #include <unistd.h>
 #include <type_traits>
 #include <cstdio>
@@ -10,6 +10,7 @@ using std::endl;
 using namespace std;
 namespace sockets {
 int createNonblockingSocket(sa_family_t family, bool close_on_exec) {
+    // cout<<"createNonblockingSocket"<<endl;
     int sockfd;
     if (close_on_exec)
         sockfd = ::socket(family, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC,
@@ -31,6 +32,7 @@ void shutdownWrite(int sockfd) {
 }
 
 void close(int sockfd) {
+    cout<<"close"<<endl;
     if (::close(sockfd) < 0) cerr << "sockets::close\n";
 }
 
@@ -51,6 +53,7 @@ int bind(int sockfd, const sockaddr* addr) {
 }
 
 void bindOrDie(int sockfd, const sockaddr* addr) {
+    cout<<"bind..."<<endl;
     if(addr->sa_family==AF_INET6){
         int ret = ::bind(sockfd, addr, static_cast<socklen_t>(sizeof(sockaddr_in6)));
         if(ret<0){
@@ -76,6 +79,7 @@ int listen(int sockfd) {
 }
 
 void listenOrDie(int sockfd) {
+    cout<<"listen..."<<endl;
     int ret = ::listen(sockfd, SOMAXCONN);
     if (ret < 0) {
         cerr<<"socket::listen\n";
@@ -84,7 +88,7 @@ void listenOrDie(int sockfd) {
 }
 
 
-int accept(int sockfd, sockaddr_in* addr) {
+int accept(int sockfd, sockaddr_in6* addr) {
     socklen_t addrlen = static_cast<socklen_t>(sizeof(sockaddr_in));
 #if defined (NO_ACCEPT4)
     int sockclntfd = ::accept(sockfd, sock, sockaddr_cast<sockaddr*>(addr), &addrlen);

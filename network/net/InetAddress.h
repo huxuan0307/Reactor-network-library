@@ -1,3 +1,6 @@
+#ifndef _INETADDRESS_H_
+#define _INETADDRESS_H_
+
 #include <arpa/inet.h>
 #include <string>
 #include "SocketTools.h"
@@ -8,6 +11,7 @@ public:
     explicit InetAddress(const sockaddr_in6& addr6) : sockaddr6_{addr6} {}
     explicit InetAddress(const sockaddr_in& addr) : sockaddr_{addr} {}
     InetAddress(const string& ip, const uint16_t port, bool ipv6 = false);
+    InetAddress(const uint16_t port);
     string toIp()const;
     string toIpPort()const;
     uint16_t toPort()const;
@@ -21,3 +25,5 @@ private:
         sockaddr_in6 sockaddr6_;
     };
 };
+
+#endif

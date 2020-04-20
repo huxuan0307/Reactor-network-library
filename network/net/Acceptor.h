@@ -1,28 +1,37 @@
 
-#include <noncopyabal.h>
 #include <functional>
+#include "noncopyable.h"
+#include "Callback.h"
 #include "Socket.h"
+#include "Channel.h"
+#include <memory>
+using std::weak_ptr;
+using std::shared_ptr;
 
 class EventLoop;
 class InetAddress;
-
-class Accepter
+class Channel;
+class Socket;
+// accept new connection and notify caller 
+// 
+class Acceptor
 {
-NONCOPYABLE(Accepter)
+NONCOPYABLE(Acceptor)
 public:
-    using NewConnection_t =
-        std::function<void(int sockfd, const InetAddress &)>;
-    Accepter(EventLoop* loop, const InetAddress& listenAddr, bool reuseport);
-    ~Accepter();
 
-    void setNewConnecttionCallback(const NewConnection_t& cb){}
+    Acceptor(weak_ptr<EventLoop> loop, const InetAddress& listenAddr);
+    ~Acceptor(){};
 
-    private:
+    void setNewConnecttionCallback(const NewConnectionCallback_t& cb) {
+        newConnectionCallback_ = cb;
+    }
+    bool is_listenning() const { return listenning_; }
+    void listen();
+private:
     void handleRead();
-    EventLoop* loop_;
+    weak_ptr<EventLoop> loop_;
     Socket acceptSocket_;
-    Channel acceptChannel_;
-    NewConnection_t newConnectionCallback_;
+    shared_ptr<Channel> acceptChannel_;
+    NewConnectionCallback_t newConnectionCallback_;
     bool listenning_;
-    int idlefd_;
 };

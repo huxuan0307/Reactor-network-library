@@ -1,8 +1,10 @@
+#ifndef _SOCKETTOOLS_H_
+#define _SOCKETTOOLS_H_
 #include <arpa/inet.h>
 #include <boost/implicit_cast.hpp>
 #include <string> 
 
-#define SOMAXCONN 16384
+// #define SOMAXCONN 16384
 namespace sockets
 {
 // all
@@ -44,11 +46,17 @@ struct sockaddr_cast_help
 template<typename To, typename From>
 To sockaddr_cast (From* x)
 {
+	using std::remove_cv;
+	using std::remove_const;
+	using std::remove_pointer;
+	using std::is_same;
+	using std::add_pointer;
+
 	using _from = typename remove_cv<From>::type;
 	using _to = typename remove_const <typename remove_pointer<To>::type>::type;
 	static_assert(is_same<_from, sockaddr>::value || is_same<_from, sockaddr_in>::value || is_same<_from, sockaddr_in6>::value,"sockaddr_cast invalid argument");
 	static_assert(is_same<_to, sockaddr>::value || is_same<_to, sockaddr_in>::value || is_same<_to, sockaddr_in6>::value, "sockaddr_cast invalid template argument");
-	return sockaddr_cast_help<typename remove_cv<From>::type, remove_pointer<To>::type>::cast (
+	return sockaddr_cast_help<typename remove_cv<From>::type, typename remove_pointer<To>::type>::cast (
 		const_cast<typename add_pointer<_from>::type>(x));
 }
 
@@ -67,6 +75,6 @@ std::string toIp(const sockaddr* addr);
 std::string toIpPort(const sockaddr* addr);
 std::uint16_t toPort(const sockaddr* addr);
 
-
-
 }
+
+#endif

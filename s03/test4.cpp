@@ -36,11 +36,11 @@ int main()
     g_loop.reset(new EventLoop{});
     // print_msg("main");
     g_loop->init();
-    // g_loop->run_after(1, bind(print_msg, "once 1"));
-    // g_loop->run_after(1.5, bind(print_msg, "once 1.5"));
-    // g_loop->run_after(6, bind(print_msg, "once 6"));
-    // g_loop->run_after(3, bind(print_msg, "once 3"));
-    // g_loop->run_after(2, bind(print_msg, "once 2"));
+    g_loop->run_after(1, bind(print_msg, "once 1"));
+    g_loop->run_after(1.5, bind(print_msg, "once 1.5"));
+    g_loop->run_after(6, bind(print_msg, "once 6"));
+    g_loop->run_after(3, bind(print_msg, "once 3"));
+    g_loop->run_after(2, bind(print_msg, "once 2"));
     g_loop->run_every(1, bind(print_msg, "every 1"));
     g_loop->run_every(2, bind(print_msg, "every 2"));
     g_loop->run_every(3, bind(print_msg, "every 3"));

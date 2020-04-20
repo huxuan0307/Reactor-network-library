@@ -17,28 +17,28 @@ using std::string;
 // using std::chrono::seconds;
 class Timestamp {
 private:
-    chrono::microseconds ms_;
+    chrono::microseconds us_;
 
 public:
-    explicit Timestamp(int64_t ms=0) : ms_{ms} {}
+    explicit Timestamp(int64_t ms=0) : us_{ms} {}
     Timestamp(const Timestamp& right){
-        ms_ = right.ms_;
+        us_ = right.us_;
     }
     Timestamp operator=(const Timestamp& right){
-        ms_ = right.ms_;
+        us_ = right.us_;
     }
     ~Timestamp() {}
-    bool valid() { return ms_.count() > 0; }
-    void swap(Timestamp& right) { std::swap(ms_, right.ms_); }
+    bool valid() { return us_.count() > 0; }
+    void swap(Timestamp& right) { std::swap(us_, right.us_); }
     string toString() const;
-    string toFormatString(bool show_ms = true) const;
-    int64_t ms_since_epoch() const { return ms_.count(); }
-    time_t s_since_epoch() const { return chrono::duration_cast<chrono::seconds>(ms_).count(); }
-    int64_t getMsOnly() const { return ms_.count() % micro::den; }
-    bool operator<(const Timestamp& right)const { return ms_ < right.ms_; }
-    bool operator==(const Timestamp& right)const { return ms_ == right.ms_; }
+    string toFormatString(bool show_us = true) const;
+    int64_t ms_since_epoch() const { return us_.count(); }
+    time_t s_since_epoch() const { return chrono::duration_cast<chrono::seconds>(us_).count(); }
+    int64_t getMsOnly() const { return us_.count() % micro::den; }
+    bool operator<(const Timestamp& right)const { return us_ < right.us_; }
+    bool operator==(const Timestamp& right)const { return us_ == right.us_; }
     Timestamp& operator+=(double secs) {
-        ms_ += chrono::duration_cast<chrono::microseconds>(chrono::duration<double>(secs));
+        us_ += chrono::duration_cast<chrono::microseconds>(chrono::duration<double>(secs));
         return *this;
     }
 
@@ -53,11 +53,11 @@ public:
 //
 //
 inline double timeDiff(const Timestamp& left, const Timestamp& right) {
-    return chrono::duration_cast<chrono::duration<double>>(left.ms_ - right.ms_).count();
+    return chrono::duration_cast<chrono::duration<double>>(left.us_ - right.us_).count();
 }
 
 inline Timestamp operator-(const Timestamp& left, const Timestamp& right) {
-    return Timestamp(left.ms_.count() - right.ms_.count());
+    return Timestamp(left.us_.count() - right.us_.count());
 }
 
 #endif

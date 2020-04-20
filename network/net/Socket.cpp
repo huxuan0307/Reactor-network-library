@@ -2,6 +2,9 @@
 #include "SocketTools.h"
 #include "InetAddress.h"
 #include <netinet/tcp.h>
+#include <iostream>
+using namespace std;
+
 Socket::~Socket(){
     sockets::close(sockfd_);
 }
@@ -16,7 +19,7 @@ void Socket::listen(){
 
 int Socket::accept(InetAddress* peeraddr){
     sockaddr_in6 addr6;
-    
+    cout<<"accept!!"<<endl;
     int connfd = sockets::accept(sockfd_,&addr6);
     if(connfd>=0){
         peeraddr->setSockAddr(sockets::sockaddr_cast<sockaddr*>(&addr6));

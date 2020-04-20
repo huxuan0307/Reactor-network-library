@@ -1,8 +1,10 @@
 #include "InetAddress.h"
 #include <string.h>
+#include <iostream>
 using std::string;
+using namespace std;
 
-InetAddress::InetAddress(const string& ip, const uint16_t port, bool ipv6 = false){
+InetAddress::InetAddress(const string& ip, const uint16_t port, bool ipv6){
     bzero(&sockaddr6_, sizeof(sockaddr_in6));
     if(ipv6){
         sockaddr6_.sin6_family = AF_INET6;
@@ -13,6 +15,14 @@ InetAddress::InetAddress(const string& ip, const uint16_t port, bool ipv6 = fals
         sockaddr_.sin_port = sockets::hostToNet16(port);
         inet_pton(AF_INET, ip.data(), &sockaddr_.sin_addr);
     }
+}
+
+InetAddress::InetAddress(const uint16_t port)
+{
+    cout << "InetAddress::InetAddress port:" << port << endl;
+    bzero(&sockaddr6_, sizeof sockaddr6_);
+    sockaddr_.sin_port = sockets::hostToNet16(port);
+    sockaddr_.sin_family = AF_INET;
 }
 
 string InetAddress::toIp()const {

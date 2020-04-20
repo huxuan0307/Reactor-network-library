@@ -84,8 +84,8 @@ void listenOrDie(int sockfd) {
 }
 
 
-int accept(int sockfd, sockaddr_in* addr) {
-    socklen_t addrlen = static_cast<socklen_t>(sizeof(sockaddr_in));
+int accept(int sockfd, sockaddr_in6* addr) {
+    socklen_t addrlen = static_cast<socklen_t>(sizeof(sockaddr_in6));
 #if defined (NO_ACCEPT4)
     int sockclntfd = ::accept(sockfd, sock, sockaddr_cast<sockaddr*>(addr), &addrlen);
     // non-block

@@ -171,7 +171,7 @@ void EventLoop::handleRead()
 
 void EventLoop::doPendingFunctors()
 {
-    // cout<<"doPendingFunctors..."<<endl;
+    cout<<"doPendingFunctors..."<<endl;
     std::vector<Event> functors;
     callingPendingFunctors_ = true;
     {
@@ -182,5 +182,5 @@ void EventLoop::doPendingFunctors()
         event();
     }
     callingPendingFunctors_ = false;
-    // cout<<"doPendingFunctors done!"<<endl;
+    cout<<"doPendingFunctors done!"<<endl;
 }

@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "../network/net/Acceptor.h"
+#include "../network/net/InetAddress.h"
 #include "../network/net/EventLoop.h"
 using namespace std;
 

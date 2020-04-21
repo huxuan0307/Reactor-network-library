@@ -1,4 +1,5 @@
-
+#ifndef _ACCEPTOR_H_
+#define _ACCEPTOR_H_
 #include <functional>
 #include "noncopyable.h"
 #include "Callback.h"
@@ -35,3 +36,5 @@ private:
     NewConnectionCallback_t newConnectionCallback_;
     bool listenning_;
 };
+
+#endif

@@ -192,4 +192,15 @@ std::uint16_t toPort(const sockaddr* addr){
     }
 }
 
+sockaddr_in getLocalAddr(int sockfd){
+    sockaddr_in addr;
+    bzero(&addr, sizeof addr);
+    socklen_t addrlen = sizeof addr;
+    if(::getsockname(sockfd, sockaddr_cast<sockaddr*>(&addr), &addrlen) <0){
+        cerr<<"sockets::getLocalAddr"<<endl;
+        perror("getsockname");
+    }
+    return addr;
+}
+
 }  // namespace sockets

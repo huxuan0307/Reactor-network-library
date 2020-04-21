@@ -1,0 +1,197 @@
+[
+{
+  "directory": "/home/huxuan666/learning/network/build/network/net",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/Network.dir/EventLoop.cpp.o -c /home/huxuan666/learning/network/network/net/EventLoop.cpp",
+  "file": "/home/huxuan666/learning/network/network/net/EventLoop.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/network/net",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/Network.dir/Poller.cpp.o -c /home/huxuan666/learning/network/network/net/Poller.cpp",
+  "file": "/home/huxuan666/learning/network/network/net/Poller.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/network/net",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/Network.dir/Channel.cpp.o -c /home/huxuan666/learning/network/network/net/Channel.cpp",
+  "file": "/home/huxuan666/learning/network/network/net/Channel.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/network/net",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/Network.dir/Timer.cpp.o -c /home/huxuan666/learning/network/network/net/Timer.cpp",
+  "file": "/home/huxuan666/learning/network/network/net/Timer.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/network/net",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/Network.dir/TimerQueue.cpp.o -c /home/huxuan666/learning/network/network/net/TimerQueue.cpp",
+  "file": "/home/huxuan666/learning/network/network/net/TimerQueue.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/network/net",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/Network.dir/Timestamp.cpp.o -c /home/huxuan666/learning/network/network/net/Timestamp.cpp",
+  "file": "/home/huxuan666/learning/network/network/net/Timestamp.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/network/net",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/Network.dir/EventLoopThread.cpp.o -c /home/huxuan666/learning/network/network/net/EventLoopThread.cpp",
+  "file": "/home/huxuan666/learning/network/network/net/EventLoopThread.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/network/net",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/Network.dir/Acceptor.cpp.o -c /home/huxuan666/learning/network/network/net/Acceptor.cpp",
+  "file": "/home/huxuan666/learning/network/network/net/Acceptor.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/network/net",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/Network.dir/SocketTools.cpp.o -c /home/huxuan666/learning/network/network/net/SocketTools.cpp",
+  "file": "/home/huxuan666/learning/network/network/net/SocketTools.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/network/net",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/Network.dir/Socket.cpp.o -c /home/huxuan666/learning/network/network/net/Socket.cpp",
+  "file": "/home/huxuan666/learning/network/network/net/Socket.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/network/net",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/Network.dir/InetAddress.cpp.o -c /home/huxuan666/learning/network/network/net/InetAddress.cpp",
+  "file": "/home/huxuan666/learning/network/network/net/InetAddress.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/network/net",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/Network.dir/TcpServer.cpp.o -c /home/huxuan666/learning/network/network/net/TcpServer.cpp",
+  "file": "/home/huxuan666/learning/network/network/net/TcpServer.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/network/net",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/Network.dir/TcpConnection.cpp.o -c /home/huxuan666/learning/network/network/net/TcpConnection.cpp",
+  "file": "/home/huxuan666/learning/network/network/net/TcpConnection.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s01",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s01_network.dir/EventLoop.cpp.o -c /home/huxuan666/learning/network/s01/EventLoop.cpp",
+  "file": "/home/huxuan666/learning/network/s01/EventLoop.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s01",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s01_network.dir/Poller.cpp.o -c /home/huxuan666/learning/network/s01/Poller.cpp",
+  "file": "/home/huxuan666/learning/network/s01/Poller.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s01",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s01_network.dir/Channel.cpp.o -c /home/huxuan666/learning/network/s01/Channel.cpp",
+  "file": "/home/huxuan666/learning/network/s01/Channel.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s01",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/test3.dir/test3.cpp.o -c /home/huxuan666/learning/network/s01/test3.cpp",
+  "file": "/home/huxuan666/learning/network/s01/test3.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s02",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/timestamp_test.dir/timestamp_test.cpp.o -c /home/huxuan666/learning/network/s02/timestamp_test.cpp",
+  "file": "/home/huxuan666/learning/network/s02/timestamp_test.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s02",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s02_network.dir/EventLoop.cpp.o -c /home/huxuan666/learning/network/s02/EventLoop.cpp",
+  "file": "/home/huxuan666/learning/network/s02/EventLoop.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s02",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s02_network.dir/Poller.cpp.o -c /home/huxuan666/learning/network/s02/Poller.cpp",
+  "file": "/home/huxuan666/learning/network/s02/Poller.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s02",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s02_network.dir/Channel.cpp.o -c /home/huxuan666/learning/network/s02/Channel.cpp",
+  "file": "/home/huxuan666/learning/network/s02/Channel.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s02",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s02_network.dir/Timer.cpp.o -c /home/huxuan666/learning/network/s02/Timer.cpp",
+  "file": "/home/huxuan666/learning/network/s02/Timer.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s02",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s02_network.dir/TimerQueue.cpp.o -c /home/huxuan666/learning/network/s02/TimerQueue.cpp",
+  "file": "/home/huxuan666/learning/network/s02/TimerQueue.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s02",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s02_network.dir/Timestamp.cpp.o -c /home/huxuan666/learning/network/s02/Timestamp.cpp",
+  "file": "/home/huxuan666/learning/network/s02/Timestamp.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s02",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/test4.dir/test4.cpp.o -c /home/huxuan666/learning/network/s02/test4.cpp",
+  "file": "/home/huxuan666/learning/network/s02/test4.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s03",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s03_test6.dir/test6.cpp.o -c /home/huxuan666/learning/network/s03/test6.cpp",
+  "file": "/home/huxuan666/learning/network/s03/test6.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s03",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s03_test5.dir/test5.cpp.o -c /home/huxuan666/learning/network/s03/test5.cpp",
+  "file": "/home/huxuan666/learning/network/s03/test5.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s03",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s03_network.dir/EventLoop.cpp.o -c /home/huxuan666/learning/network/s03/EventLoop.cpp",
+  "file": "/home/huxuan666/learning/network/s03/EventLoop.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s03",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s03_network.dir/Poller.cpp.o -c /home/huxuan666/learning/network/s03/Poller.cpp",
+  "file": "/home/huxuan666/learning/network/s03/Poller.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s03",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s03_network.dir/Channel.cpp.o -c /home/huxuan666/learning/network/s03/Channel.cpp",
+  "file": "/home/huxuan666/learning/network/s03/Channel.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s03",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s03_network.dir/Timer.cpp.o -c /home/huxuan666/learning/network/s03/Timer.cpp",
+  "file": "/home/huxuan666/learning/network/s03/Timer.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s03",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s03_network.dir/TimerQueue.cpp.o -c /home/huxuan666/learning/network/s03/TimerQueue.cpp",
+  "file": "/home/huxuan666/learning/network/s03/TimerQueue.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s03",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s03_network.dir/Timestamp.cpp.o -c /home/huxuan666/learning/network/s03/Timestamp.cpp",
+  "file": "/home/huxuan666/learning/network/s03/Timestamp.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s03",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s03_network.dir/EventLoopThread.cpp.o -c /home/huxuan666/learning/network/s03/EventLoopThread.cpp",
+  "file": "/home/huxuan666/learning/network/s03/EventLoopThread.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s03",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s03_test4.dir/test4.cpp.o -c /home/huxuan666/learning/network/s03/test4.cpp",
+  "file": "/home/huxuan666/learning/network/s03/test4.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s04",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s04_test9.dir/test9.cpp.o -c /home/huxuan666/learning/network/s04/test9.cpp",
+  "file": "/home/huxuan666/learning/network/s04/test9.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s04",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s04_test7.dir/test7.cpp.o -c /home/huxuan666/learning/network/s04/test7.cpp",
+  "file": "/home/huxuan666/learning/network/s04/test7.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s04",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s04_test8.dir/test8.cpp.o -c /home/huxuan666/learning/network/s04/test8.cpp",
+  "file": "/home/huxuan666/learning/network/s04/test8.cpp"
+},
+{
+  "directory": "/home/huxuan666/learning/network/build/s05",
+  "command": "/usr/bin/g++-7    -g   -std=c++11 -pthread -g -o CMakeFiles/s05_test8.dir/test8.cpp.o -c /home/huxuan666/learning/network/s05/test8.cpp",
+  "file": "/home/huxuan666/learning/network/s05/test8.cpp"
+}
+]

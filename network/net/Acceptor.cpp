@@ -1,6 +1,14 @@
 
 #include "Acceptor.h"
+
 #include <cassert>
+#include <iostream>
+
+#include "InetAddress.h"
+#include "SocketTools.h"
+using std::cerr;
+using std::cout;
+using std::endl;
 Acceptor::Acceptor(weak_ptr<EventLoop> loop, const InetAddress& listenAddr)
 :loop_{loop},
 acceptSocket_{sockets::createNonblockingSocket(AF_INET)},
@@ -27,9 +35,10 @@ void Acceptor::listen()
 // accept one connection per call
 void Acceptor::handleRead()
 {
+    cout<<"Acceptor::handleRead()"<<endl;
     assert(loop_.lock());
     loop_.lock()->assertInLoopThread();
-    InetAddress peerAddr(sockaddr_in{});
+    InetAddress peerAddr(0);
     int connfd = acceptSocket_.accept(&peerAddr);
     if(connfd >=0 ){
         newConnectionCallback_(connfd, peerAddr);

@@ -5,6 +5,7 @@
 #include <sys/time.h>
 #include "../network/net/Acceptor.h"
 #include "../network/net/EventLoop.h"
+#include "../network/net/InetAddress.h"
 #include "../network/net/Timestamp.h"
 using namespace std;
 

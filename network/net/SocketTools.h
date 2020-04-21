@@ -75,6 +75,7 @@ std::string toIp(const sockaddr* addr);
 std::string toIpPort(const sockaddr* addr);
 std::uint16_t toPort(const sockaddr* addr);
 
+sockaddr_in getLocalAddr(int sockfd);
 }
 
 #endif

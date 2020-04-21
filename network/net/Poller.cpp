@@ -66,7 +66,7 @@ void Poller::updateChannel(std::shared_ptr<Channel> channel){
         pollfds_[idx].revents = 0;
         if(channel->isNoneEvent()){
             // ignore this fd
-            pollfds_[idx].fd=-1;
+            pollfds_[idx].fd = -idx - 1;
         }
 
     }

@@ -43,7 +43,7 @@ public:
     void runInLoop(const Event& cb);
     void queueInLoop(const Event& cb);
     void wakeup();
-
+    size_t pollfdCnt();
 private:
     using ChannelList = std::vector<std::weak_ptr<Channel>>;
 

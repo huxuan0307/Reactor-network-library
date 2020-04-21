@@ -30,6 +30,7 @@ public:
     }
 private:
     void newConnection(int sockfd, const InetAddress& peerAddr);
+    void removeConnection(const shared_ptr<TcpConnection>& conn);
     int getNextConnId(){
         return nextConnId_++;
     }

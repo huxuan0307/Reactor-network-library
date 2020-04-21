@@ -12,4 +12,5 @@ using Event = std::function<void()>;
 using NewConnectionCallback_t = std::function<void(int sockfd, const InetAddress &)>;
 using ConnectionCallback_t = std::function<void(const std::shared_ptr<TcpConnection>&)>;
 using MessageCallback_t = std::function<void(const std::shared_ptr<TcpConnection> &, const char *, ssize_t len)>;
+using CloseCallback_t = std::function<void(const std::shared_ptr<TcpConnection>&)>;
 #endif

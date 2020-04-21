@@ -7,6 +7,7 @@
 #include <vector>
 #include <map>
 #include <memory>
+#include <stdint.h>
 class Channel;
 class TimeStamp;
 // class ChannelList;
@@ -25,6 +26,7 @@ public:
     // remove target channel
     void removeChannel(std::shared_ptr<Channel> channel);
 
+    size_t pollfdCnt(){return pollfds_.size();}
 private:
     void fillActiveChannels(int numEvents, ChannelList& activeChannels)const;
     using PollFdList = std::vector<pollfd> ;

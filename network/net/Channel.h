@@ -20,7 +20,7 @@ using EventCallback = std::function<void()>;
     void setReadCallback(const EventCallback& cb){readCallback_ = cb;}
     void setWriteCallback(const EventCallback& cb){writeCallback_ = cb;}
     void setErrorCallback(const EventCallback& cb){errorCallback_ = cb;}
-
+    void setCloseCallback(const EventCallback& cb){closeCallback_ = cb;}
     int fd()const {return fd_;}
     int events()const {return events_;}
     void setRevents(int revents){revents_ = revents;}
@@ -37,13 +37,13 @@ using EventCallback = std::function<void()>;
 
     // for EventLoop
     std::weak_ptr<EventLoop> ownerLoop()const {return loop_;}
+    static const int kNoneEvent;
+    static const int kReadEvent;
+    static const int kWriteEvent;
 
 private:
     void update();
 
-    static const int kNoneEvent;
-    static const int kReadEvent;
-    static const int kWriteEvent;
 
     std::weak_ptr<EventLoop> loop_;
     const int fd_;
@@ -51,10 +51,12 @@ private:
     int revents_;
     int index_;
 
+    bool eventHandling_;
+
     EventCallback readCallback_;
     EventCallback writeCallback_;
     EventCallback errorCallback_;
-
+    EventCallback closeCallback_;
 };
 
 #endif

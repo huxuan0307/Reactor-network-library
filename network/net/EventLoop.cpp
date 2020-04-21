@@ -72,9 +72,11 @@ void EventLoop::loop(){
         // handle active channels
         for(auto& channel: activeChannels_){
             assert(channel.lock());
+            cout<<"active channel index: "<<channel.lock()->index()<<endl;
             channel.lock()->handleEvent();
         }
         doPendingFunctors();
+        cout<<"current pollfdCnt: "<<poller_->pollfdCnt()<<endl;
     }
     looping_ = false;
 }
@@ -159,6 +161,9 @@ void EventLoop::wakeup()
     }
 }
 
+size_t EventLoop::pollfdCnt(){return poller_->pollfdCnt();}
+
+
 void EventLoop::handleRead()
 {
     uint64_t one = 1;
@@ -171,7 +176,7 @@ void EventLoop::handleRead()
 
 void EventLoop::doPendingFunctors()
 {
-    cout<<"doPendingFunctors..."<<endl;
+    // cout<<"doPendingFunctors..."<<endl;
     std::vector<Event> functors;
     callingPendingFunctors_ = true;
     {
@@ -182,5 +187,5 @@ void EventLoop::doPendingFunctors()
         event();
     }
     callingPendingFunctors_ = false;
-    cout<<"doPendingFunctors done!"<<endl;
+    // cout<<"doPendingFunctors done!"<<endl;
 }

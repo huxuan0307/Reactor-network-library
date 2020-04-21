@@ -5,7 +5,6 @@
 #include "Callback.h"
 #include "noncopyable.h"
 #include "InetAddress.h"
-// #include "EventLoop.h"
 #include <memory>
 using std::unique_ptr;
 using std::shared_ptr;
@@ -29,12 +28,21 @@ public:
     void setMessageCallback(const MessageCallback_t& cb){
         messageCallback_ = cb;
     }
+    void setCloseCallback(const CloseCallback_t& cb){
+        closeCallback_ = cb;
+    }
     // called when TcpServer accepts a new connection
     void connectEstablished();
-    
+    // called when receive 0 bytes
+    void connectDestroyed();
+
     bool connected(){
         return State::connected == state_;
     }
+    bool disconnected(){
+        return State::disconnected == state_;
+    }
+    
     string& name(){
         return name_;
     }
@@ -44,19 +52,22 @@ public:
     InetAddress& localAddr() { return localAddr_; }
 
 private:
-    enum class State{connecting, connected};
+    enum class State{connecting, connected, disconnected, };
     void setState(State s){state_ = s;}
     void handleRead();
-    
+    void handleWrite();
+    void handleClose();
+    void handleError();
     State state_;
     weak_ptr<EventLoop> loop_;
     unique_ptr<Socket> socket_;
     shared_ptr<Channel> channel_;
     InetAddress localAddr_;
     InetAddress peerAddr_;
-    string name_; // ?
+    string name_; // for log and debug
     ConnectionCallback_t connectionCallback_;
     MessageCallback_t messageCallback_;
+    CloseCallback_t closeCallback_;
 };
 
 #endif

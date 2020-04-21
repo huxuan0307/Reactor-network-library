@@ -48,7 +48,24 @@ void TcpServer::newConnection(int sockfd, const InetAddress& peerAddr){
     connectionMap_[connName] = conn;
     conn->setConnectionCallback(connectionCallback_);
     conn->setMessageCallback(messageCallback_);
+    conn->setCloseCallback([this](const shared_ptr<TcpConnection>& conn) {
+        removeConnection(conn);
+    });
     conn->connectEstablished();
 
     cout<<"TcpServer::newConnection() end"<<endl;
+}
+
+void TcpServer::removeConnection(const shared_ptr<TcpConnection>& conn)
+{
+    cout<<"TcpServer::removeConnection()"<<endl;
+    assert(loop_.lock());
+    loop_.lock()->assertInLoopThread();
+    cout << "TcpServer::removeConnection() [" << name_ << "] - connection ["
+         << conn->name() << endl;
+    assert(connectionMap_.erase(conn->name())==1);
+    loop_.lock()->queueInLoop([conn](){
+        conn->connectDestroyed();
+    });
+    cout<<"TcpServer::removeConnection() end"<<endl;
 }

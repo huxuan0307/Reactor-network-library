@@ -203,4 +203,16 @@ sockaddr_in getLocalAddr(int sockfd){
     return addr;
 }
 
+int getSocketError(int sockfd)
+{
+    int optval;
+    socklen_t optlen = sizeof optval;
+    if(::getsockopt(sockfd, SOL_SOCKET, SO_ERROR, &optval, &optlen)<0){
+        perror("getSocketError->getsockopt()");
+        return -1;
+    }else{
+        return optval;
+    }
+}
+
 }  // namespace sockets

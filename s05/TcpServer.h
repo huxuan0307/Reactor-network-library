@@ -35,15 +35,15 @@ private:
     }
     using ConnectionMap_t = std::map<string, shared_ptr<TcpConnection>>;
     weak_ptr<EventLoop> loop_;
-    shared_ptr<Acceptor> acceptor_;
-    ConnectionCallback_t connectionCallback_;
-    MessageCallback_t messageCallback_;
-
     string name_;
+    shared_ptr<Acceptor> acceptor_;
+
     bool started_;
     int nextConnId_;
     ConnectionMap_t connectionMap_;
 
+    ConnectionCallback_t connectionCallback_;
+    MessageCallback_t messageCallback_;
 };
 
 #endif

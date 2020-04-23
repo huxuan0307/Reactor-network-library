@@ -14,10 +14,11 @@ class Channel:public enable_shared_from_this<Channel>
 
 public:
 using EventCallback = std::function<void()>;
+using ReadEventCallback_t = std::function<void(Timestamp)>;
     Channel(std::weak_ptr<EventLoop> loop, int fd);
     ~Channel();
-    void handleEvent();
-    void setReadCallback(const EventCallback& cb){readCallback_ = cb;}
+    void handleEvent(Timestamp receiveTime);
+    void setReadCallback(const ReadEventCallback_t& cb){readCallback_ = cb;}
     void setWriteCallback(const EventCallback& cb){writeCallback_ = cb;}
     void setErrorCallback(const EventCallback& cb){errorCallback_ = cb;}
     void setCloseCallback(const EventCallback& cb){closeCallback_ = cb;}
@@ -53,7 +54,7 @@ private:
 
     bool eventHandling_;
 
-    EventCallback readCallback_;
+    ReadEventCallback_t readCallback_;
     EventCallback writeCallback_;
     EventCallback errorCallback_;
     EventCallback closeCallback_;

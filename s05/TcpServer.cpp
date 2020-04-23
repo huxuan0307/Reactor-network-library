@@ -39,7 +39,6 @@ void TcpServer::newConnection(int sockfd, const InetAddress& peerAddr){
     cout<<"TcpServer::newConnection()"<<endl;
     assert(loop_.lock());
     loop_.lock()->assertInLoopThread();
-    char buf[32];
     string connName = name_ + std::to_string(getNextConnId());
     cout << "TcpServer::newConnection() [" << name_ << "] - new connection ["
          << connName << "] from " << peerAddr.toIpPort() << endl;

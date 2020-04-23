@@ -158,7 +158,7 @@ bool TimerQueue::insert(shared_ptr<Timer> timer)
     if(iter==timers_.end()||when<timers_.begin()->first){
         needResetTimer = true;
     }
-    auto result = timers_.emplace(when, move(timer));
+    timers_.emplace(when, move(timer));
     if(needResetTimer){
         resetTimerfd(timerfd_, when);
     }

@@ -1,8 +1,12 @@
 
 #include "Channel.h"
+
 #include <poll.h>
-#include <iostream>
+
 #include <cassert>
+#include <iostream>
+
+#include "Timestamp.h"
 const int Channel::kNoneEvent = 0;
 const int Channel::kReadEvent = POLLIN | POLLPRI;
 const int Channel::kWriteEvent = POLLOUT;
@@ -32,7 +36,7 @@ void Channel::update(){
     // cerr<<"Channel::update() end"<<endl;
 }
 
-void Channel::handleEvent(){
+void Channel::handleEvent(Timestamp){
     eventHandling_ = true;
     if(revents_ & POLLNVAL){
         std::cerr<<"Channel::handleEvent() POLLNVAL"<<endl;
@@ -47,7 +51,7 @@ void Channel::handleEvent(){
         if (errorCallback_) errorCallback_();
     }
     if (revents_ & POLLIN) {
-        if (readCallback_) readCallback_();
+        if (readCallback_) readCallback_(Timestamp::now());
     }
     if (revents_ & POLLOUT) {
         if (writeCallback_) writeCallback_();

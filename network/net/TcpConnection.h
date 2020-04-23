@@ -5,6 +5,7 @@
 #include "Callback.h"
 #include "noncopyable.h"
 #include "InetAddress.h"
+#include "RingBuffer.h"
 #include <memory>
 using std::unique_ptr;
 using std::shared_ptr;
@@ -54,20 +55,22 @@ public:
 private:
     enum class State{connecting, connected, disconnected, };
     void setState(State s){state_ = s;}
-    void handleRead();
+    void handleRead(Timestamp);
     void handleWrite();
     void handleClose();
     void handleError();
-    State state_;
     weak_ptr<EventLoop> loop_;
     unique_ptr<Socket> socket_;
     shared_ptr<Channel> channel_;
     InetAddress localAddr_;
     InetAddress peerAddr_;
     string name_; // for log and debug
+    State state_;
     ConnectionCallback_t connectionCallback_;
     MessageCallback_t messageCallback_;
     CloseCallback_t closeCallback_;
+    RingBuffer inputBuffer_;
+
 };
 
 #endif

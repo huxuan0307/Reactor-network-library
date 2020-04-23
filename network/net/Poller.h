@@ -9,7 +9,7 @@
 #include <memory>
 #include <stdint.h>
 class Channel;
-class TimeStamp;
+class Timestamp;
 // class ChannelList;
 class pollfd;
 // ¶ÔIO multiplexingµÄ·â×°

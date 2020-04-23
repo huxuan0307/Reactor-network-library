@@ -7,6 +7,7 @@
 #include "Socket.h"
 #include <iostream>
 #include <cassert>
+#include "Timestamp.h"
 using std::cout;
 using std::cerr;
 using std::endl;
@@ -15,14 +16,25 @@ TcpConnection::TcpConnection(weak_ptr<EventLoop> loop, const string& connName,
                              int sockfd, const InetAddress& localAddr,
                              const InetAddress& peerAddr)
     : loop_{loop},
-      name_{connName},
+      socket_{new Socket{sockfd}},
+      channel_{new Channel{loop, sockfd}},
       localAddr_{localAddr},
       peerAddr_{peerAddr},
-      channel_{new Channel{loop, sockfd}},
-      socket_{new Socket{sockfd}},
+      name_{connName},
       state_{State::connecting} {
     cout<<"TcpConnection::TcpConnection()... "<<endl;
-    channel_->setReadCallback(std::bind(&TcpConnection::handleRead, this));
+    channel_->setReadCallback([this](Timestamp t){
+        this->handleRead(t);
+    });
+    channel_->setWriteCallback([this](){
+        this->handleWrite();
+    });
+    channel_->setCloseCallback([this](){
+        this->handleClose();
+    });
+    channel_->setErrorCallback([this](){
+        this->handleError();
+    });
     cout<<"TcpConnection::TcpConnection() end "<<endl;
 }
 
@@ -30,17 +42,21 @@ TcpConnection::~TcpConnection() {
     cout<<"~TcpConnection()"<<endl;
 }
 
-void TcpConnection::handleRead() {
+void TcpConnection::handleRead(Timestamp receiveTime) {
     cout<<"TcpConnection::handleRead()"<<endl;
-    char buf[65536];
-    ssize_t cnt = ::read(channel_->fd(), buf, sizeof buf);
+    int savedErrno = 0;
+    // char buf[65536];
+    // ssize_t cnt = ::read(channel_->fd(), buf, sizeof buf);
+    ssize_t cnt = inputBuffer_.readFromFd(channel_->fd(), savedErrno);
     if(cnt>0){
-        messageCallback_(shared_from_this(), buf, sizeof cnt);
+        messageCallback_(shared_from_this(), &inputBuffer_, receiveTime);
     }
     else if(cnt==0){
         handleClose();
     }
     else{
+        errno = savedErrno;
+        perror("TcpConnection::handleRead");
         handleError();
     }
 }

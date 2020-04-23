@@ -42,8 +42,8 @@ public:
     // for debug
     void checkTimer()const;
 private:
-    const int timerfd_;
     weak_ptr<EventLoop> loop_;
+    const int timerfd_;
     shared_ptr<Channel> timerfdChannel_;
     // 
     TimerList timers_;

@@ -24,8 +24,9 @@ public:
     Timestamp(const Timestamp& right){
         us_ = right.us_;
     }
-    Timestamp operator=(const Timestamp& right){
+    Timestamp& operator=(const Timestamp& right){
         us_ = right.us_;
+        return *this;
     }
     ~Timestamp() {}
     bool valid() { return us_.count() > 0; }

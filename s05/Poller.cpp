@@ -79,9 +79,9 @@ void Poller::removeChannel(std::shared_ptr<Channel> channel)
     assert(channelmap_.find(channel->fd()) != channelmap_.end());
 
     this->channelmap_.erase(channel->fd());
-    if(idx == pollfds_.size() -1 ){
+    if(static_cast<size_t>(idx) == pollfds_.size() -1 ){
         pollfds_.pop_back();
-    }else if(idx<pollfds_.size() -1){
+    }else if(static_cast<size_t>(idx)<pollfds_.size() -1){
         std::iter_swap(pollfds_.begin() + idx ,pollfds_.end()-1);
         int channelfd_atend = pollfds_.back().fd;
         // update channel.index

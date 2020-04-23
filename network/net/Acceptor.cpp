@@ -6,6 +6,7 @@
 
 #include "InetAddress.h"
 #include "SocketTools.h"
+#include "Timestamp.h"
 using std::cerr;
 using std::cout;
 using std::endl;
@@ -17,6 +18,7 @@ listenning_{false}
 {
     acceptSocket_.setReuseAddr();
     acceptSocket_.bindAddress(listenAddr);
+    acceptChannel_->setReadCallback([this](Timestamp) { handleRead(); });
 }
 
 void Acceptor::listen()
@@ -25,10 +27,8 @@ void Acceptor::listen()
     loop_.lock()->assertInLoopThread();
     listenning_ = true;
     acceptSocket_.listen();
-    // put setreadback & enable togather
-    acceptChannel_->setReadCallback([this](){
-        handleRead();
-    });
+    // !put setreadback & enable togather
+
     acceptChannel_->enableReading();
 }
 

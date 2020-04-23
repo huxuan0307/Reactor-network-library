@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "../network/net/TcpConnection.h"
-#include "../network/net/TcpServer.h"
+#include "TcpConnection.h"
+#include "TcpServer.h"
 using namespace std;
 
 void onConnection(const shared_ptr<TcpConnection>& conn) {

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <chrono>
 #include <cstring>
+#include <cassert>
 using std::cerr;
 using std::endl;
 using namespace std;
@@ -190,6 +191,8 @@ std::uint16_t toPort(const sockaddr* addr){
     }else if(addr->sa_family == AF_INET){
         return sockets::netToHost16(sockaddr_cast<sockaddr_in*>(addr)->sin_port);
     }
+    assert(false);
+    return 0;
 }
 
 sockaddr_in getLocalAddr(int sockfd){

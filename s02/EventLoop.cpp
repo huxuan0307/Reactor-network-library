@@ -87,7 +87,7 @@ void EventLoop::removeChannel(std::shared_ptr<Channel> channel){
 
 TimerId EventLoop::run_at(const Timestamp& timestamp, const TimerCallback& cb)
 {
-    timerQueue_->addTimer(cb, timestamp, 0.0);
+    return timerQueue_->addTimer(cb, timestamp, 0.0);
 }
 
 TimerId EventLoop::run_after(double delay, const TimerCallback& cb)

@@ -15,11 +15,12 @@ TcpConnection::TcpConnection(weak_ptr<EventLoop> loop, const string& connName,
                              int sockfd, const InetAddress& localAddr,
                              const InetAddress& peerAddr)
     : loop_{loop},
-      name_{connName},
+      socket_{new Socket{sockfd}},
+      channel_{new Channel{loop, sockfd}},
       localAddr_{localAddr},
       peerAddr_{peerAddr},
-      channel_{new Channel{loop, sockfd}},
-      socket_{new Socket{sockfd}} {
+      name_{connName}
+{
     cout<<"TcpConnection::TcpConnection()... "<<endl;
     channel_->setReadCallback(std::bind(&TcpConnection::handleRead, this));
     cout<<"TcpConnection::TcpConnection() end "<<endl;

@@ -48,13 +48,13 @@ private:
     void setState(State s){state_ = s;}
     void handleRead();
     
-    State state_;
     weak_ptr<EventLoop> loop_;
     unique_ptr<Socket> socket_;
     shared_ptr<Channel> channel_;
     InetAddress localAddr_;
     InetAddress peerAddr_;
     string name_; // ?
+    State state_;
     ConnectionCallback_t connectionCallback_;
     MessageCallback_t messageCallback_;
 };

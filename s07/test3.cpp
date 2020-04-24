@@ -9,9 +9,9 @@
 #include <memory>
 #include <thread>
 
-#include "../network/net/Channel.h"
-#include "../network/net/EventLoop.h"
-#include "../network/net/Timestamp.h"
+#include "Channel.h"
+#include "EventLoop.h"
+#include "Timestamp.h"
 using std::cout;
 using std::endl;
 using std::shared_ptr;

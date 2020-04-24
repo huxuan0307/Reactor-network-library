@@ -7,7 +7,7 @@
 #include "Socket.h"
 #include <iostream>
 #include <cassert>
-#include "Timestamp.h"
+
 using std::cout;
 using std::cerr;
 using std::endl;
@@ -22,7 +22,9 @@ TcpConnection::TcpConnection(weak_ptr<EventLoop> loop, const string& connName,
       peerAddr_{peerAddr},
       name_{connName},
       state_{State::connecting} {
-    cout<<"TcpConnection::TcpConnection()... "<<endl;
+    TRACE<<"TcpConnection::TcpConnection()";
+
+    // cout<<"TcpConnection::TcpConnection()... "<<endl;
     channel_->setReadCallback([this](Timestamp t){
         this->handleRead(t);
     });
@@ -35,18 +37,18 @@ TcpConnection::TcpConnection(weak_ptr<EventLoop> loop, const string& connName,
     channel_->setErrorCallback([this](){
         this->handleError();
     });
-    cout<<"TcpConnection::TcpConnection() end "<<endl;
+    // cout<<"TcpConnection::TcpConnection() end "<<endl;
 }
 
 TcpConnection::~TcpConnection() {
-    cout<<"~TcpConnection()"<<endl;
+    TRACE<<"~TcpConnection()";
+    channel_->disableAll();
+    TRACE<<"~TcpConnection() done!";
 }
 
 void TcpConnection::handleRead(Timestamp receiveTime) {
-    cout<<"TcpConnection::handleRead()"<<endl;
+    TRACE<<"TcpConnection::handleRead()";
     int savedErrno = 0;
-    // char buf[65536];
-    // ssize_t cnt = ::read(channel_->fd(), buf, sizeof buf);
     ssize_t cnt = inputBuffer_.readFromFd(channel_->fd(), savedErrno);
     if(cnt>0){
         messageCallback_(shared_from_this(), &inputBuffer_, receiveTime);
@@ -63,7 +65,7 @@ void TcpConnection::handleRead(Timestamp receiveTime) {
 
 void TcpConnection::handleWrite()
 {
-    cout<<"TcpConnection::handleWrite()"<<endl;
+    TRACE<<"TcpConnection::handleWrite()";
     assert(loop_.lock());
     loop_.lock()->assertInLoopThread();
     if(channel_->isWriting()){
@@ -74,6 +76,11 @@ void TcpConnection::handleWrite()
             if(outputBuffer_.readableLength() == 0){
                 // write all unset POLLOUT
                 channel_->disableWriting();
+                if (writeCompleteCallback_){
+                    loop_.lock()->queueInLoop([this]() {
+                        writeCompleteCallback_(shared_from_this());
+                    });
+                }
                 // this flag setted when TcpConnection::shutdown() called
                 if(state_ == State::disconnecting){
                     shutdownInLoop();
@@ -83,7 +90,7 @@ void TcpConnection::handleWrite()
             }
         }else{
             perror("write()");
-            cerr<<"TcpConnection::handleWrite()"<<endl;
+            cerr<<"TcpConnection::handleWrite() outputbuffer.size():"<<outputBuffer_.readableLength()<<endl;
         }
     }else{
         // do nothing
@@ -101,6 +108,7 @@ void TcpConnection::handleWrite()
 // 5. 在Poller中清除当前Channel
 void TcpConnection::handleClose()
 {
+    TRACE<<"TcpConnection::handleClose()";
     assert(loop_.lock());
     loop_.lock()->assertInLoopThread();
     assert(state_==State::connected||state_==State::disconnecting);
@@ -112,6 +120,8 @@ void TcpConnection::handleClose()
 
 void TcpConnection::handleError()
 {
+    TRACE<<"TcpConnection::handleError()";
+    
     int err = sockets::getSocketError(channel_->fd());
     cout << "TcpConnection::handleError() [" << name_
          << "] - SO_ERROR = " << err << " " << strerror(err) << endl;
@@ -119,7 +129,8 @@ void TcpConnection::handleError()
 
 void TcpConnection::connectEstablished()
 {
-    cout<<"TcpConnection::connectEstablished()"<<endl;
+    TRACE<<"TcpConnection::connectEstablished()";
+    
     assert(loop_.lock());
     assert(connectionCallback_&&messageCallback_&&closeCallback_);
 
@@ -132,7 +143,7 @@ void TcpConnection::connectEstablished()
 
 void TcpConnection::connectDestroyed()
 {
-    cout<<"TcpConnection::connectDestroyed()"<<endl;
+    TRACE<<"TcpConnection::connectDestroyed()";
     assert(loop_.lock());
     loop_.lock()->assertInLoopThread();
     assert(state_==State::connected||state_==State::disconnecting);
@@ -141,13 +152,12 @@ void TcpConnection::connectDestroyed()
         channel_->disableAll();
     connectionCallback_(shared_from_this()); // ? why not closeCallback
     loop_.lock()->removeChannel(channel_);
-    cout<<"TcpConnection::connectDestroyed() end"<<endl;
-
+    TRACE<<"TcpConnection::connectDestroyed() done!";
 }
 
 void TcpConnection::shutdown()
 {
-    cout<<"TcpConnection::shutdown()"<<endl;
+    TRACE<<"TcpConnection::shutdown()";
     assert(loop_.lock());
     // assert(state_ == State::connected);
     if(state_ == State::connected){
@@ -160,7 +170,7 @@ void TcpConnection::shutdown()
 }
 
 void TcpConnection::shutdownInLoop(){
-    cout<<"TcpConnection::shutdownInLoop()"<<endl;
+    TRACE<<"TcpConnection::shutdownInLoop()";
     assert(loop_.lock());
     loop_.lock()->assertInLoopThread();
     if(!channel_->isWriting()){
@@ -170,6 +180,7 @@ void TcpConnection::shutdownInLoop(){
 
 void TcpConnection::send(string&& message)
 {
+    TRACE<<"TcpConnection::send()";
     if(state_ == State::connected){
         if(loop_.lock()->isInLoopThread()){
             sendInLoop(move(message));
@@ -183,19 +194,27 @@ void TcpConnection::send(string&& message)
 }
 
 void TcpConnection::sendInLoop(string&& message){
+    TRACE<<"TcpConnection::sendInLoop()";
     loop_.lock()->assertInLoopThread();
     ssize_t cnt = 0;
     if(!channel_->isWriting() && outputBuffer_.readableLength() == 0){
         cnt = ::write(channel_->fd(), message.data(), message.size());
         if(cnt >= 0){
             if(static_cast<size_t>(cnt)<message.size()){
-                // 
+                // just write next time
+            }else{
+                if(writeCompleteCallback_)
+                    loop_.lock()->queueInLoop(std::bind(writeCompleteCallback_, shared_from_this()));
+                    // 注意智能指针在lambda中的捕获，
+                    // loop_.lock()->queueInLoop([this](){
+                    //     writeCompleteCallback_(shared_from_this()); 
+                    // });
             }
         }else{
             cnt =0;
             if(errno!=EWOULDBLOCK){
+                cerr<<"TcpConnection::sendInLoop() errno!=EWOULDBLOCK"<<endl;
                 perror("write");
-                cerr<<"TcpConnection::sendInLoop()"<<endl;
             }
         }
     }
@@ -206,4 +225,8 @@ void TcpConnection::sendInLoop(string&& message){
             channel_->enableWriting();
         }
     }
+}
+
+void TcpConnection::setTcpNoDelay(bool on){
+    socket_->setTcpNoDelay(on);
 }

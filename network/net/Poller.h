@@ -3,7 +3,8 @@
 #define _POLLER_H_
 
 #include "EventLoop.h"
-#include "noncopyable.h"
+#include "network_global.h"
+
 #include <vector>
 #include <map>
 #include <memory>

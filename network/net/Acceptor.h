@@ -1,7 +1,8 @@
 #ifndef _ACCEPTOR_H_
 #define _ACCEPTOR_H_
 #include <functional>
-#include "noncopyable.h"
+#include "network_global.h"
+
 #include "Callback.h"
 #include "Socket.h"
 #include "Channel.h"

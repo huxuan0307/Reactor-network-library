@@ -2,11 +2,12 @@
 #ifndef _TCPCONNECTION_H_
 #define _TCPCONNECTION_H_
 
+#include <memory>
+
 #include "Callback.h"
-#include "noncopyable.h"
 #include "InetAddress.h"
 #include "RingBuffer.h"
-#include <memory>
+#include "network_global.h"
 using std::unique_ptr;
 using std::shared_ptr;
 using std::weak_ptr;
@@ -29,6 +30,9 @@ public:
     void setMessageCallback(const MessageCallback_t& cb){
         messageCallback_ = cb;
     }
+    void setWriteCompleteCallback(const WriteCompleteCallback_t& cb){
+        writeCompleteCallback_ = cb;
+    }
     void setCloseCallback(const CloseCallback_t& cb){
         closeCallback_ = cb;
     }
@@ -48,7 +52,21 @@ public:
     void send(string&& message);
 
     void shutdown();
-    
+    void setTcpNoDelay(bool on = true);
+    std::string stateToString() const {
+        switch (state_) {
+            case State::connecting:
+                return "connecting";
+            case State::connected:
+                return "connected";
+            case State::disconnected:
+                return "disconnected";
+            case State::disconnecting:
+                return "disconnecting";
+            default:
+                return "";
+        }
+    }
 
 private:
     enum class State{connecting, connected, disconnecting, disconnected, };
@@ -68,6 +86,7 @@ private:
     State state_;
     ConnectionCallback_t connectionCallback_;
     MessageCallback_t messageCallback_;
+    WriteCompleteCallback_t writeCompleteCallback_;
     CloseCallback_t closeCallback_;
     RingBuffer inputBuffer_;
     RingBuffer outputBuffer_;

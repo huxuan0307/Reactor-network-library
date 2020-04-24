@@ -4,7 +4,7 @@
 #include <functional>
 #include <memory>
 
-#include "noncopyable.h"
+#include "network_global.h"
 #include "EventLoop.h"
 // one channel per thread?
 using std::enable_shared_from_this;

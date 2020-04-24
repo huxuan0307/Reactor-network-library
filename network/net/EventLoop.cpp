@@ -18,7 +18,7 @@ using std::endl;
 
 // v in one thread
 thread_local EventLoop* t_loopInThisThread = nullptr;
-const int EventLoop::kPOllerTime_ms = 1000;    // 1000ms
+const int EventLoop::kPOllerTime_ms = 10000;    // 1000ms
 
 static int createEventfd(){
     // fd for event
@@ -38,7 +38,8 @@ EventLoop::EventLoop()
     {
     if(t_loopInThisThread){
         // error this_thread already has a EventLoop
-        fprintf(stderr, "this_thread already has a EventLoop\n");
+        FATAL << "this_thread already has a EventLoop";
+        assert(false);
     }
     else{
         t_loopInThisThread = this;
@@ -55,13 +56,14 @@ void EventLoop::init()
 }
 
 EventLoop::~EventLoop(){
+    TRACE << "~EventLoop()";
     assert(!looping_);
     t_loopInThisThread = nullptr;
 }
 
 void EventLoop::loop(){
+    TRACE << "EventLoop::loop()";
     assert(!looping_);
-
     looping_ = true;
     quit_ = false;
     while (!quit_)
@@ -72,16 +74,18 @@ void EventLoop::loop(){
         // handle active channels
         for(auto& channel: activeChannels_){
             assert(channel.lock());
-            cout<<"active channel index: "<<channel.lock()->index()<<endl;
-            channel.lock()->handleEvent(Timestamp::now());
+            TRACE << "active channel index: " << channel.lock()->index();
+            if(channel.lock())
+                channel.lock()->handleEvent(Timestamp::now());
         }
         doPendingFunctors();
-        cout<<"current pollfdCnt: "<<poller_->pollfdCnt()<<endl;
+        TRACE << "current pollfdCnt: " << poller_->pollfdCnt();
     }
     looping_ = false;
 }
 
 void EventLoop::quit(){
+    TRACE << "EventLoop::quit()";
     // set quit flag, active at next loop in EventLoop::loop()
     quit_ = true;
     if(!isInLoopThread()){
@@ -91,6 +95,7 @@ void EventLoop::quit(){
 
 void EventLoop::runInLoop(const Event& cb)
 {
+    TRACE << "EventLoop::runInLoop()";
     if(isInLoopThread()){
         cb();
     }else{
@@ -100,6 +105,7 @@ void EventLoop::runInLoop(const Event& cb)
 
 void EventLoop::queueInLoop(const Event& cb)
 {
+    TRACE<<"EventLoop::queueInLoop()";
     {
         std::lock_guard<std::mutex> lg(mutex_);
         pendingFunctors_.push_back(cb);
@@ -110,6 +116,7 @@ void EventLoop::queueInLoop(const Event& cb)
 }
 
 void EventLoop::abortNotInLoopThread(){
+    Fatal() << "is not in loop thread";
     std::cerr<<"is not in loop thread"<<std::endl;
     abort();
 }
@@ -119,13 +126,14 @@ EventLoop* getEventLoopOfCurrentThread(){
 }
 
 void EventLoop::updateChannel(std::shared_ptr<Channel> channel){
-    // cerr<<"EventLoop::updateChannel"<<endl;
+    TRACE<<"EventLoop::updateChannel()";
     assert(channel->ownerLoop().lock().get() == this);
     assertInLoopThread();
     poller_->updateChannel(channel);
 }
 
 void EventLoop::removeChannel(std::shared_ptr<Channel> channel){
+    TRACE<<"EventLoop::removeChannel()";
     assert(channel->ownerLoop().lock().get() == this);
     assertInLoopThread();
     poller_->removeChannel(channel);
@@ -153,6 +161,8 @@ TimerId EventLoop::run_every(double interval, const TimerCallback& cb)
 // use IO to weakup EventLoop
 void EventLoop::wakeup()
 {
+    TRACE<<"EventLoop::wakeup()";
+
     uint64_t one = 1; //?
     auto ret = ::write(wakeupFd_, &one, sizeof one);
     if(ret != sizeof one){
@@ -166,6 +176,8 @@ size_t EventLoop::pollfdCnt(){return poller_->pollfdCnt();}
 
 void EventLoop::handleRead()
 {
+    TRACE<<"EventLoop::handleRead()";
+    
     uint64_t one = 1;
     auto ret = ::read(wakeupFd_, &one, sizeof one);
     if (ret != sizeof one) {
@@ -176,7 +188,8 @@ void EventLoop::handleRead()
 
 void EventLoop::doPendingFunctors()
 {
-    // cout<<"doPendingFunctors..."<<endl;
+    TRACE<<"EventLoop::doPendingFunctors()";
+
     std::vector<Event> functors;
     callingPendingFunctors_ = true;
     {
@@ -187,5 +200,5 @@ void EventLoop::doPendingFunctors()
         event();
     }
     callingPendingFunctors_ = false;
-    // cout<<"doPendingFunctors done!"<<endl;
+    TRACE<<"EventLoop::doPendingFunctors() done!";
 }

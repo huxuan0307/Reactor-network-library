@@ -1,13 +1,15 @@
 
 #ifndef _TCPSERVER_H_
 #define _TCPSERVER_H_
-#include <memory>
+
 #include <map>
-#include "noncopyable.h"
-#include "EventLoop.h"
-#include "Callback.h"
-#include "Acceptor.h"
+#include <memory>
 #include <string>
+
+#include "Acceptor.h"
+#include "Callback.h"
+#include "EventLoop.h"
+#include "network_global.h"
 using std::unique_ptr;
 using std::shared_ptr;
 using std::weak_ptr;
@@ -28,6 +30,10 @@ public:
     void setMessageCallback(const MessageCallback_t& cb){
         messageCallback_ = cb;
     }
+
+    void setWriteCompleteCallback(const WriteCompleteCallback_t& cb){
+        writeCompleteCallback_ =  cb;
+    }
 private:
     void newConnection(int sockfd, const InetAddress& peerAddr);
     void removeConnection(const shared_ptr<TcpConnection>& conn);
@@ -45,6 +51,7 @@ private:
 
     ConnectionCallback_t connectionCallback_;
     MessageCallback_t messageCallback_;
+    WriteCompleteCallback_t writeCompleteCallback_;
 };
 
 #endif

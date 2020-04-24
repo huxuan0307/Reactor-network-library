@@ -19,7 +19,7 @@ InetAddress::InetAddress(const string& ip, const uint16_t port, bool ipv6){
 
 InetAddress::InetAddress(const uint16_t port)
 {
-    cout << "InetAddress::InetAddress port:" << port << endl;
+    // Info() << "InetAddress::InetAddress port:" << port << endl;
     bzero(&sockaddr6_, sizeof sockaddr6_);
     sockaddr_.sin_port = sockets::hostToNet16(port);
     sockaddr_.sin_family = AF_INET;

@@ -5,8 +5,8 @@
 #include <iostream>
 
 #include "InetAddress.h"
-#include "SocketTools.h"
-#include "Timestamp.h"
+#include "../base/SocketTools.h"
+
 using std::cerr;
 using std::cout;
 using std::endl;
@@ -35,7 +35,7 @@ void Acceptor::listen()
 // accept one connection per call
 void Acceptor::handleRead()
 {
-    cout<<"Acceptor::handleRead()"<<endl;
+    Info()<<"Acceptor::handleRead()";
     assert(loop_.lock());
     loop_.lock()->assertInLoopThread();
     InetAddress peerAddr(0);

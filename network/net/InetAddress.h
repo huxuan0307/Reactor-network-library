@@ -3,7 +3,8 @@
 
 #include <arpa/inet.h>
 #include <string>
-#include "SocketTools.h"
+#include "network_global.h"
+
 class InetAddress {
     using string = std::string;
 

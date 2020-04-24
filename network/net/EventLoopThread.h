@@ -3,7 +3,7 @@
 #include <mutex>
 #include <thread>
 
-#include "noncopyable.h"
+#include "../base/noncopyable.h"
 using std::shared_ptr;
 using std::unique_ptr;
 class EventLoop;

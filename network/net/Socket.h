@@ -1,4 +1,4 @@
-#include "noncopyable.h"
+#include "network_global.h"
 
 class InetAddress;
 

@@ -2,8 +2,8 @@
 
 #include <functional>
 #include "Callback.h"
-#include "Timestamp.h"
-#include "noncopyable.h"
+#include "network_global.h"
+
 #include <iostream>
 
 using std::cout;

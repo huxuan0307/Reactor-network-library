@@ -1,13 +1,15 @@
 
 #ifndef _EVENTLOOP_H_
 #define _EVENTLOOP_H_
-#include "noncopyable.h"
+#include "network_global.h"
+
 #include "Callback.h"
 #include <functional>
 #include <thread>
 #include <vector>
 #include <memory>
 #include <mutex>
+#include <signal.h>
 using namespace std::this_thread;
 using std::enable_shared_from_this;
 
@@ -16,6 +18,18 @@ class Poller;
 class TimerId;
 class Timestamp;
 class TimerQueue;
+
+class IgnoreSigpipe
+{
+private:
+    /* data */
+public:
+    IgnoreSigpipe(/* args */) {
+        ::signal(SIGPIPE, SIG_IGN);
+    }
+    ~IgnoreSigpipe() {}
+};
+
 class EventLoop:public enable_shared_from_this<EventLoop>
 {
     NONCOPYABLE(EventLoop)

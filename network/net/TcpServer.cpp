@@ -23,6 +23,7 @@ TcpServer::~TcpServer(){}
 
 void TcpServer::start()
 {
+    TRACE << "TcpServer::start()";
     assert(loop_.lock());
     loop_.lock()->init();
     assert(!started_);
@@ -32,11 +33,10 @@ void TcpServer::start()
             acceptor_->listen();
         });
     }
-
 }
 
 void TcpServer::newConnection(int sockfd, const InetAddress& peerAddr){
-    cout<<"TcpServer::newConnection()"<<endl;
+    TRACE << "TcpServer::newConnection()";
     assert(loop_.lock());
     loop_.lock()->assertInLoopThread();
     string connName = name_ + std::to_string(getNextConnId());
@@ -47,17 +47,19 @@ void TcpServer::newConnection(int sockfd, const InetAddress& peerAddr){
     connectionMap_[connName] = conn;
     conn->setConnectionCallback(connectionCallback_);
     conn->setMessageCallback(messageCallback_);
+    conn->setWriteCompleteCallback(writeCompleteCallback_);
     conn->setCloseCallback([this](const shared_ptr<TcpConnection>& conn) {
         removeConnection(conn);
     });
     conn->connectEstablished();
 
-    cout<<"TcpServer::newConnection() end"<<endl;
+    TRACE << "TcpServer::newConnection() done!";
 }
 
 void TcpServer::removeConnection(const shared_ptr<TcpConnection>& conn)
 {
-    cout<<"TcpServer::removeConnection()"<<endl;
+    TRACE << "TcpServer::removeConnection()";
+    
     assert(loop_.lock());
     loop_.lock()->assertInLoopThread();
     cout << "TcpServer::removeConnection() [" << name_ << "] - connection ["
@@ -66,5 +68,5 @@ void TcpServer::removeConnection(const shared_ptr<TcpConnection>& conn)
     loop_.lock()->queueInLoop([conn](){
         conn->connectDestroyed();
     });
-    cout<<"TcpServer::removeConnection() end"<<endl;
+    TRACE << "TcpServer::removeConnection() done!";
 }

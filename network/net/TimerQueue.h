@@ -6,8 +6,8 @@
 #include <map>
 #include <vector>
 #include "Callback.h"
-#include "Timestamp.h"
-#include "noncopyable.h"
+#include "network_global.h"
+
 using std::shared_ptr;
 using std::unique_ptr;
 using std::weak_ptr;

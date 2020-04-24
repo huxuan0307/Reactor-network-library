@@ -7,15 +7,9 @@
 #include <memory>
 #include <vector>
 #include <cassert>
+#include <iostream>
+#include "network_global.h"
 
-// template <size_t SIZE>
-// struct BufferData {
-//     char data[SIZE];
-// };
-// namespace {
-// constexpr size_t kBufferSize = 2048;
-// constexpr size_t kExtraBufferSize = 65536;
-// }  // namespace
 class RingBuffer
 {
 	template<typename T>
@@ -23,15 +17,7 @@ class RingBuffer
 public:
 	static const size_t kInitialSize = 16;
 
-	RingBuffer ()
-		: buffer_ (kInitialSize),
-		readerIndex_ (0),
-		writerIndex_ (0)
-	{
-		assert (readableLength () == 0);
-		assert (writableLength () == kInitialSize);
-	}
-
+	RingBuffer ();
 	// default copy-ctor, dtor and assignment are fine
 
 	size_t dataSize ()const { return dataSize_; }

@@ -17,19 +17,22 @@ Poller::~Poller(){
 
 void Poller::poll(int timeout_ms, ChannelList& activeChannels)
 {
+    TRACE<<"Poller::poll()";
     int numEvents = ::poll(&pollfds_.front(), pollfds_.size(), timeout_ms);
     if(numEvents > 0){
         fillActiveChannels(numEvents, activeChannels);
     }else if(numEvents == 0){
 
     }else{
-
+        perror("poll");
     }
 
 }
 
 void Poller::fillActiveChannels(int numEvents, ChannelList& activeChannels)const
 {
+    TRACE<<"Poller::fillActiveChannels()";
+    
     for(auto iter = pollfds_.begin(); iter!=pollfds_.end()&&numEvents>0 ;++iter ){
         if(iter->revents>0){
             --numEvents;
@@ -42,10 +45,10 @@ void Poller::fillActiveChannels(int numEvents, ChannelList& activeChannels)const
 }
 
 void Poller::updateChannel(std::shared_ptr<Channel> channel){
-    // cerr<<"Poller::updateChannel"<<endl;
+    TRACE<<"Poller::updateChannel()";
+
     if(channel->index()<0){
         // a new one, needed to add to pollfds_
-        // cerr << "new pollfd" << endl;
         pollfd pfd;
         pfd.fd = channel->fd();
         pfd.events = static_cast<short>(channel->events());
@@ -55,7 +58,8 @@ void Poller::updateChannel(std::shared_ptr<Channel> channel){
         
         int idx = static_cast<int>(pollfds_.size())-1;
         channel->setIndex(idx);
-        
+
+        TRACE << "new pollfd index:" << idx;
         channelmap_.emplace(pfd.fd, channel);
         
     }else{
@@ -74,6 +78,7 @@ void Poller::updateChannel(std::shared_ptr<Channel> channel){
 
 void Poller::removeChannel(std::shared_ptr<Channel> channel)
 {
+    TRACE<<"Poller::removeChannel()";
     int idx = channel->index();
     assert(idx>=0);
     assert(channelmap_.find(channel->fd()) != channelmap_.end());

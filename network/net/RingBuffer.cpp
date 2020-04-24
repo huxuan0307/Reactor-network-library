@@ -3,6 +3,13 @@
 
 constexpr int extraBufferSize = 65536;
 
+RingBuffer::RingBuffer()
+    : buffer_(kInitialSize), readerIndex_(0), writerIndex_(0), dataSize_(0) {
+    std::cout << "RingBuffer()" << std::endl;
+    assert(readableLength() == 0);
+    assert(writableLength() == kInitialSize);
+}
+
 ssize_t RingBuffer::readFromFd (int fd, int& savedErrno)
 {
 	char extraBuffer[extraBufferSize];

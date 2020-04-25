@@ -3,8 +3,8 @@
 #include <iostream>
 #include <memory>
 
-#include "../network/net/TcpConnection.h"
-#include "../network/net/TcpServer.h"
+#include "net/TcpConnection.h"
+#include "net/TcpServer.h"
 
 using namespace std;
 IgnoreSigpipe initObj;

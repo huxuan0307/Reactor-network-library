@@ -15,4 +15,5 @@ add_subdirectory(s06)
 add_subdirectory(s07)
 add_subdirectory(s08)
 add_subdirectory(s09)
+add_subdirectory(s10)
 

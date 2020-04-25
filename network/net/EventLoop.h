@@ -53,11 +53,13 @@ public:
     TimerId run_at(const Timestamp& timestamp, const TimerCallback& cb);
     TimerId run_after(double delay, const TimerCallback& cb);
     TimerId run_every(double interval, const TimerCallback& cb);
+    void cancelTimer(TimerId timerid);
 
     void runInLoop(const Event& cb);
     void queueInLoop(const Event& cb);
     void wakeup();
     size_t pollfdCnt();
+    
 private:
     using ChannelList = std::vector<std::weak_ptr<Channel>>;
 

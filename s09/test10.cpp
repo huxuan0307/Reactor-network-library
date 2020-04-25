@@ -3,9 +3,9 @@
 #include <iostream>
 #include <memory>
 #include <chrono>
-#include "../network/net/TcpConnection.h"
-#include "../network/net/TcpServer.h"
-#include "../network/base/Timestamp.h"
+#include "net/TcpConnection.h"
+#include "net/TcpServer.h"
+#include "base/Timestamp.h"
 
 using namespace std;
 

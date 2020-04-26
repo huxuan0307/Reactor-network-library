@@ -6,6 +6,7 @@
 #include <chrono>
 #include <cstring>
 #include <cassert>
+#include "Logging.h"
 using std::cerr;
 using std::endl;
 using namespace std;
@@ -206,6 +207,17 @@ sockaddr_in getLocalAddr(int sockfd){
     return addr;
 }
 
+sockaddr_in getPeerAddr(int sockfd)
+{
+    sockaddr_in peeraddr;
+    bzero(&peeraddr, sizeof peeraddr);
+    socklen_t addrlen = sizeof peeraddr;
+    if(::getpeername(sockfd, sockaddr_cast<sockaddr*>(&peeraddr), &addrlen)<0){
+        FATAL << "socket::getPeerAddr() " << strerror(errno);
+    }
+    return peeraddr;
+}
+
 int getSocketError(int sockfd)
 {
     int optval;
@@ -216,6 +228,12 @@ int getSocketError(int sockfd)
     }else{
         return optval;
     }
+}
+
+bool isSelfConnect(int sockfd){
+	sockaddr_in localaddr = getLocalAddr(sockfd);
+	sockaddr_in peeraddr = getPeerAddr(sockfd);
+	return localaddr.sin_addr.s_addr == peeraddr.sin_addr.s_addr && localaddr.sin_port == peeraddr.sin_port;
 }
 
 }  // namespace sockets

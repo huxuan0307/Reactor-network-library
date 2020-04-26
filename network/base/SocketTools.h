@@ -76,8 +76,10 @@ std::string toIpPort(const sockaddr* addr);
 std::uint16_t toPort(const sockaddr* addr);
 
 sockaddr_in getLocalAddr(int sockfd);
+sockaddr_in getPeerAddr(int sockfd);
 int getSocketError(int sockfd);
 
+bool isSelfConnect(int sockfd);
 }
 
 #endif

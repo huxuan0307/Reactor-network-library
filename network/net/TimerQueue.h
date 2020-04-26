@@ -29,8 +29,10 @@ public:
     void addTimerInLoop(shared_ptr<Timer> timer);
     
     void cancel(TimerId timerid);
-    
+    void cancelInLoop(TimerId timerid);
+
     using TimerList = multimap<Timestamp, shared_ptr<Timer>> ;
+    using ActiveTimerSet = std::set<pair<shared_ptr<Timer>, int64_t>>;
     // called when timer alarms
     void handleRead();
 
@@ -48,5 +50,9 @@ private:
     shared_ptr<Channel> timerfdChannel_;
     // 
     TimerList timers_;
+    // for cancel()
+    bool callingExpiredTimers_;
+    ActiveTimerSet activeTimers_;
+    ActiveTimerSet cancalingTimers_;
 };
 #endif

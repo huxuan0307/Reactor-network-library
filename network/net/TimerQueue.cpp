@@ -107,6 +107,20 @@ void TimerQueue::addTimerInLoop(shared_ptr<Timer> timer){
     insert(move(timer));
 }
 
+void TimerQueue::cancel(TimerId timerid)
+{
+    loop_.lock()->runInLoop(std::bind(&TimerQueue::cancelInLoop, this, timerid));
+}
+
+void TimerQueue::cancelInLoop(TimerId timerid)
+{
+    loop_.lock()->assertInLoopThread();
+    assert(timers_.size()== activeTimers_.size());
+    /// @todo
+    /// add cancel part
+    
+}
+
 void TimerQueue::handleRead()
 {
     assert(loop_.lock());
